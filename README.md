@@ -1,2 +1,2 @@
 # wacc
-a web cli
+a web automatic client
