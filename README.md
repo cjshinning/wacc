@@ -1,7 +1,7 @@
 # wacc
 a web client
 
-##命令行
+## 命令行
 * 初始化
 wacc init **gamekey**  gamekey为必传
 
@@ -14,7 +14,7 @@ wacc prod **gamekey**  gamekey为必传
 * 产出环境
 wacc deploy **gamekey**  gamekey为必传
 
-##配置
+## 配置
 * settins
 找到项目config/settins，配置pages，传入数组
 pc端直接按页面名称命名，比如首页index.html
