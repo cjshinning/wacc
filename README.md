@@ -3,16 +3,16 @@ a web client
 
 ## 命令行
 * 初始化
-wacc init **gamekey**  gamekey为必传
+wacc init **gamekey**（必传）
 
 * 开发模式
-wacc dev **gamekey**  gamekey为必传
+wacc dev **gamekey**（必传）
 
 * 测试环境
-wacc prod **gamekey**  gamekey为必传
+wacc prod **gamekey**（必传）
 
 * 产出环境
-wacc deploy **gamekey**  gamekey为必传
+wacc deploy **gamekey**（必传）
 
 ## 配置
 * settins
