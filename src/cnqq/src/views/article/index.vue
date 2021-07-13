@@ -1,5 +1,5 @@
 <template>
-    <div class="article">这是内页</div>
+    <div class="article">这是文章页</div>
 </template>
 <script>
 export default {

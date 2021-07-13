@@ -56,10 +56,65 @@ function createSpritesmithPlugin() {
     return spritesmithPluginResult;
 }
 
+function createHtmlWebpackPlugin(){
+    const htmlWebpackPluginResult = [];
+    settings.pages.forEach(item => {
+        let chunk = '';
+        if(item.indexOf('wap') === -1){
+            chunk = item.split('.html')[0];
+            htmlWebpackPluginResult.push(
+                new HtmlWebpackPlugin({
+                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/index.html'),
+                    filename: item,
+                    chunks: ['vendors', chunk]
+                })
+            );
+        }else{
+            chunk = item.split('.html')[0].split('/').join('');
+            htmlWebpackPluginResult.push(
+                new HtmlWebpackPlugin({
+                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
+                    filename: item,
+                    chunks: ['vendors', chunk]
+                })
+            );
+        }
+    });
+    return htmlWebpackPluginResult;
+}
+
+function createEntries(){
+    const entries = {};
+    settings.pages.forEach(item => {
+        let entryKey = '';
+        let entryPath = '';
+        if(item.indexOf('wap') === -1){
+            settings.platform = 'pc';
+            entryKey = item.split('.html')[0];
+            entryPath = path.resolve(settings.basePath,'src',settings.appId,'src/pages/',entryKey,'./index.js');
+        }else{
+            settings.platform = 'wap';
+            const reg = /^wap\/(.*).html$/;
+            entryKey = item.split('.html')[0].split('/').join('');
+            entryPath = path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/',reg.exec(item)[1],'./index.js');
+        }
+        entries[entryKey] = entryPath;
+    })
+    return entries;
+}
+
+
 module.exports = {
-    entry: {
-        app: path.resolve(settings.basePath,'src',settings.appId,'src/main.js')
-    },
+    // entry: {
+    //     // app: path.resolve(settings.basePath,'src',settings.appId,'src/main.js'),
+    //     index: path.resolve(settings.basePath,'src',settings.appId,'src/pages/index/index.js'),
+    //     list: path.resolve(settings.basePath,'src',settings.appId,'src/pages/list/index.js'),
+    //     article: path.resolve(settings.basePath,'src',settings.appId,'src/pages/article/index.js'),
+    //     wapindex: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/index/index.js'),
+    //     waplist: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/list/index.js'),
+    //     waparticle: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/article/index.js'),
+    // },
+    entry: createEntries(),
     resolve: {
         extensions: ['.js', '.jsx', '.vue']
     },
@@ -92,29 +147,21 @@ module.exports = {
     },
     plugins: [
         ...createSpritesmithPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(settings.basePath,'src',settings.appId,'index.html')
-        }), 
+        ...createHtmlWebpackPlugin(),
         new CleanWebpackPlugin(),
         new VueLoaderPlugin()
     ],
     performance: false,
     optimization: {
         splitChunks: {
-          cacheGroups: {
-            default: {
-                name: 'common',
-                chunks: 'initial',
-                minChunks: 2,
-                priority: -20
-            },
-            vendors: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendor',
-                chunks: 'initial',
-                priority: -10
+            chunks: 'all',
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    name: 'vendors'
+                }
             }
-          },
-        },
+        }
       },
 };

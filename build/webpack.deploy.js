@@ -46,7 +46,7 @@ const deployConfig = {
         new CopyPlugin([
             { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
         ]),
-        new htmlTohtmWebpackPlugin()
+        new htmlTohtmWebpackPlugin(settings.pages)
     ],
     optimization: {
     },

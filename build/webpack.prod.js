@@ -49,7 +49,7 @@ const prodConfig = {
         new CopyPlugin([
             { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
         ]),
-        new htmlTohtmWebpackPlugin(),
+        new htmlTohtmWebpackPlugin(settings.pages),
         new WebpackUploadPlugin({//上传资源到测试环境
             receiver: settings.wwwUploadScript,
             to: path.join('/www', settings.wwwDeployDomain, settings.appId),

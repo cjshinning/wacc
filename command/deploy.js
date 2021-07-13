@@ -15,15 +15,18 @@ async function uploadAssets(src, dist, msg){
         
         await fs.copy(devPath, svnPath)
         
-        const indexPath = path.join(svnPath, 'index.htm');
-        fs.stat(indexPath, (err, stats) => {
-            if(err) throw err;
-            if(stats.isFile()){
-                fs.unlink(indexPath);
-                resolve();
-            }
-        });
-        return;
+        settings.pages.forEach(page => {
+            const htmPath = path.join(svnPath, page.substring(0, page.length-1));
+            fs.stat(htmPath, (err, stats) => {
+                if(err) throw err;
+                if(stats.isFile()){
+                    fs.unlink(htmPath);
+                    resolve();
+                }
+            });
+            return;
+        })
+        // return;
         // svn = new SvnUploading({
         //     cwd: dist
         // })
@@ -50,18 +53,19 @@ async function uploadTpl(src, dist, msg){
                 const filedir = path.join(svnPath, filename);
                 fs.stat(filedir, (err, stats) => {
                     if(err) throw err;
+                    // 过滤多余文件
                     const isFile = stats.isFile();
-                    if(!isFile){
+                    if(!isFile && filedir.indexOf('wap') === -1){
                         fs.remove(filedir, err => {
                             if(err) throw err;
                         })
                     }
-                    if(isFile){
-                        if(filedir.indexOf('pc') !== -1){
-                            spawn("mv", [filedir, path.resolve(svnPath, '../')]);
-                            fs.removeSync(svnPath)
-                        }
-                    }
+                    // if(isFile){
+                    //     if(filedir.indexOf('pc') !== -1){
+                    //         spawn("mv", [filedir, path.resolve(svnPath, '../')]);
+                    //         fs.removeSync(svnPath)
+                    //     }
+                    // }
                     resolve();
                 })
             })
@@ -81,7 +85,7 @@ async function uploadSrc(src, dist, msg){
 
 function getTitle(){
     return new Promise((resolve, reject) => {
-        const index = path.resolve(settings.basePath, 'src', settings.appId, 'index.html');
+        const index = path.resolve(settings.basePath, 'src', settings.appId, 'templates/index.html');
         fs.readFile(index, 'utf8', (err, data) => {
             if (err) {
                 reject(err);
