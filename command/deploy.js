@@ -85,7 +85,7 @@ async function uploadSrc(src, dist, msg){
 
 function getTitle(){
     return new Promise((resolve, reject) => {
-        const index = path.resolve(settings.basePath, 'src', settings.appId, 'templates/index.html');
+        const index = path.resolve(settings.basePath, 'src', settings.appId, 'templates/pc/index.html');
         fs.readFile(index, 'utf8', (err, data) => {
             if (err) {
                 reject(err);

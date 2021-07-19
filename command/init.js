@@ -4,9 +4,9 @@ const inquirer = require('inquirer');
 const settings = require('../config/settings');
 const { log } = require('../lib/util');
 
-async function chooseComponents(platform, baseDist){
-    const baseSrc = platform === 'pc' ? path.resolve(settings.basePath, 'template/baseTplPc') : path.resolve(settings.basePath, 'template/baseTplWap');
-    const componentsSrc = platform === 'pc' ? path.resolve(settings.basePath, 'template/componentsPc') : path.resolve(settings.basePath, 'template/componentsWap');
+async function chooseComponents(baseDist){
+    const baseSrc = path.resolve(settings.basePath, 'template/baseTpl');
+    const componentsSrc = path.resolve(settings.basePath, 'template/components');
     let fileFilter = [".idea",".vscode",".DS_Store"];
     fs.removeSync(baseDist);
     try {
@@ -60,9 +60,9 @@ async function init(){
             log('项目初始化失败', 'red');
             return;
         }
-        chooseComponents(settings.platform, baseDist);
+        chooseComponents(baseDist);
     }else{
-        chooseComponents(settings.platform, baseDist);
+        chooseComponents(baseDist);
     }
 }
 

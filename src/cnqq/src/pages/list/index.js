@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import List from '../../views/list';
+import List from '../../views/pc/list';
 import '@babel/polyfill';
 
 new Vue({

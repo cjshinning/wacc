@@ -53,44 +53,20 @@ const deployConfig = {
 }
 
 let scssRule = null;
-if(settings.platform === 'pc'){
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            'postcss-loader',
-            'sass-loader'
-        ]
-    };
-}else{
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            {
-                loader: 'px2rem-loader',
-                options: {
-                  remUni: 75,
-                  remPrecision: 8
-                }
-            },
-            'postcss-loader',
-            'sass-loader'
-        ]
-    };
-}
+scssRule = {
+    test: /\.scss$/i,
+    use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2
+          }
+        },
+        'postcss-loader',
+        'sass-loader'
+    ]
+};
 deployConfig.module.rules.unshift(scssRule);
 
 module.exports = merge(commonConfig, deployConfig);

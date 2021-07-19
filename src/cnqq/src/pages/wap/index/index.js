@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Index from '../../../views/wap-index';
+import Index from '../../../views/wap/index';
 import 'lib-flexible/flexible.js';
 
 new Vue({

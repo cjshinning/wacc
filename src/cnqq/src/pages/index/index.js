@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Index from '../../views/index';
+import Index from '../../views/pc/index';
 import '@babel/polyfill';
 
 new Vue({

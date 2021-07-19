@@ -8,8 +8,6 @@ const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const htmlTohtmWebpackPlugin = require('../plugins/html2htm-webpack-plugin');
 
-const tplUploadDir = (settings.appId.indexOf('pc') !== -1) ? path.join('/www', settings.wwwTplsDomain, settings.appId.split('/pc')[0]) : path.join('/www', settings.wwwTplsDomain, settings.appId);
-
 const prodConfig = {
     mode: 'production',
     devtool: 'cheap-module-source-map',
@@ -88,7 +86,7 @@ const prodConfig = {
         }),
         new WebpackUploadPlugin({//上传模板到测试环境
             receiver: settings.wwwUploadScript,
-            to: tplUploadDir,
+            to: path.join('/www', settings.wwwTplsDomain, settings.appId),
             test: (filepath) => {
                 //上传过滤
                 if(/\.html$/g.test(filepath)){
@@ -105,52 +103,28 @@ const prodConfig = {
 }
 
 let scssRule = null;
-if(settings.platform === 'pc'){
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            'postcss-loader',
-            'sass-loader',
-            {
-                loader: 'sass-resources-loader',
-                options: {
-                    resources: [
-                        path.resolve(settings.basePath,'src',settings.appId, 'src/assets/css/sprite.scss')
-                    ]
-                }
+scssRule = {
+    test: /\.scss$/i,
+    use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2
+          }
+        },
+        'postcss-loader',
+        'sass-loader',
+        {
+            loader: 'sass-resources-loader',
+            options: {
+                resources: [
+                    path.resolve(settings.basePath,'src',settings.appId, 'src/assets/css/sprite.scss')
+                ]
             }
-        ]
-    };
-}else{
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            MiniCssExtractPlugin.loader,
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            {
-                loader: 'px2rem-loader',
-                options: {
-                  remUni: 75,
-                  remPrecision: 8
-                }
-            },
-            'postcss-loader',
-            'sass-loader'
-        ]
-    };
-}
+        }
+    ]
+};
 prodConfig.module.rules.unshift(scssRule);
 
 module.exports = merge(commonConfig, prodConfig);

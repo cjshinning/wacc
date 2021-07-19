@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Article from '../../views/article';
+import Article from '../../views/pc/article';
 import '@babel/polyfill';
 
 new Vue({

@@ -4,7 +4,6 @@ module.exports = {
     basePath,
     appName: '',
     appId: '',
-    platform: '',
     wwwSourceDir: 'src',
     wwwDeployDomain: 'img1.37wanimg.com',
     wwwTplsDomain: 'common.tpl.37.com',

@@ -14,19 +14,6 @@ function checkId(appId, cb){
     }
 }
 
-// 检查官网平台（pc或者wap）
-function checkPlatform(appId, cb){
-    if(appId.split('/')[1] === 'pc'){
-        settings.platform = 'pc';
-    }else if(appId.split('/')[1] === 'wap'){
-        settings.platform = 'wap';
-    }else {
-        log('请输入正确的开发目录', 'red');
-        return;
-    }
-    cb();
-}
-
 program.version('0.0.1');
 
 program
@@ -35,16 +22,14 @@ program
   .action((appId) => {
     checkId(appId, () => {
         settings.appId = appId;
-        checkPlatform(settings.appId, () => {
-            require('../command/init')();
-        })
+        require('../command/init')();
     })
   });
 
 program
   .command('dev <appId>')
   .description('进入本地开发模式')
-  .action((appId) => {
+  .action((appId, type) => {
     process.env.NODE_ENV = 'development';
     checkId(appId, () => {
         settings.appId = appId;

@@ -64,7 +64,7 @@ function createHtmlWebpackPlugin(){
             chunk = item.split('.html')[0];
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/index.html'),
+                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
                     filename: item,
                     chunks: ['vendors', chunk]
                 })
@@ -89,11 +89,9 @@ function createEntries(){
         let entryKey = '';
         let entryPath = '';
         if(item.indexOf('wap') === -1){
-            settings.platform = 'pc';
             entryKey = item.split('.html')[0];
             entryPath = path.resolve(settings.basePath,'src',settings.appId,'src/pages/',entryKey,'./index.js');
         }else{
-            settings.platform = 'wap';
             const reg = /^wap\/(.*).html$/;
             entryKey = item.split('.html')[0].split('/').join('');
             entryPath = path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/',reg.exec(item)[1],'./index.js');
@@ -105,15 +103,6 @@ function createEntries(){
 
 
 module.exports = {
-    // entry: {
-    //     // app: path.resolve(settings.basePath,'src',settings.appId,'src/main.js'),
-    //     index: path.resolve(settings.basePath,'src',settings.appId,'src/pages/index/index.js'),
-    //     list: path.resolve(settings.basePath,'src',settings.appId,'src/pages/list/index.js'),
-    //     article: path.resolve(settings.basePath,'src',settings.appId,'src/pages/article/index.js'),
-    //     wapindex: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/index/index.js'),
-    //     waplist: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/list/index.js'),
-    //     waparticle: path.resolve(settings.basePath,'src',settings.appId,'src/pages/wap/article/index.js'),
-    // },
     entry: createEntries(),
     resolve: {
         extensions: ['.js', '.jsx', '.vue']

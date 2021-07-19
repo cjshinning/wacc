@@ -1,0 +1,47 @@
+@import './asset.scss';
+@import './mixin.scss';
+
+body{
+    font: 12px/1.5 "Microsoft Yahei",SimSun;
+    background: url('../img/bg.png') repeat top center;
+}
+
+.container{
+    max-width: 750*$ppr;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    *{
+        box-sizing: inherit;
+    }
+    a{
+        text-decoration: none;
+    }
+}
+
+.banner{
+    position: relative;
+    width: 750*$ppr;
+    height: 1200*$ppr;
+    background-size: cover;
+    // .gamesite-tip16{
+    //     display: block;
+    //     position: absolute;
+    //     left: 20px;
+    //     top: 970px;
+    //     width: 79px;
+    //     height: 102px;
+    //     background: url('../img/gamesite-tip16.png') no-repeat;
+    //     background-size: cover;
+    // }
+    .kv{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 750*$ppr;
+        height: 1200*$ppr;
+        a{
+            display: block;
+        }
+    }
+}

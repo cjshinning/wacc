@@ -43,44 +43,20 @@ const devConfig = {
 }
 
 let scssRule = null;
-if(settings.platform === 'pc'){
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            'postcss-loader',
-            'sass-loader'
-        ]
-    };
-}else{
-    scssRule = {
-        test: /\.scss$/i,
-        use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2
-              }
-            },
-            {
-                loader: 'px2rem-loader',
-                options: {
-                  remUni: 75,
-                  remPrecision: 8
-                }
-            },
-            'postcss-loader',
-            'sass-loader'
-        ]
-    };
-}
+scssRule = {
+    test: /\.scss$/i,
+    use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2
+          }
+        },
+        'postcss-loader',
+        'sass-loader'
+    ]
+};
 devConfig.module.rules.unshift(scssRule);
 
 
