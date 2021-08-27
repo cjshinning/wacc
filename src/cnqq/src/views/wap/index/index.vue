@@ -1,24 +1,31 @@
 <template>
     <div class="container">
+        <nav-head-m :config="navConfig"></nav-head-m>
         <section class="banner">
             <div class="kv">
                 <a :href="topImg.link">
                     <img :src="topImg.img" width="100%" alt="">
                 </a>
             </div>
-            <!-- <download :config="downloadConfig"></download>
-            <a href="javascript:;" class="gamesite-tip16" v-if="tip16Content" @click="showTip16()" :style="{top: tip16Config.index_top&&tip16Config.index_top+'px', left: tip16Config.index_left&&tip16Config.index_left+'px', backgroundImage: `url(${tip16Config.index_img}`}"></a> -->
+            <download-m :config="downloadConfig"></download-m>
+            <a href="javascript:;" class="gamesite-tip16" v-if="tip16Content" @click="showTip16()" :style="{top: tip16Config.index_top&&tip16Config.index_top+'px', left: tip16Config.index_left&&tip16Config.index_left+'px', backgroundImage: `url(${tip16Config.index_img}`}"></a>
         </section>
+        <mobile-tip-m></mobile-tip-m>
     </div>
 </template>
 <script>
 import '../../../assets/wap/css/main.scss';
 import {jsonp} from 'axios-jsonp-pro';
 import apiUrl from '../../../assets/wap/js/apiUrl.js';
-import role1 from '../../../../extras/wap/img/role-1.png';
-import role2 from '../../../../extras/wap/img/role-2.png';
-import role3 from '../../../../extras/wap/img/role-3.png';
-import role4 from '../../../../extras/wap/img/role-4.png';
+
+import DownloadM from '../../../components/wap/download-m/download-m';
+import MobileTipM from '../../../components/wap/mobile-tip-m/mobile-tip-m';
+import NavHeadM from '../../../components/wap/nav-head-m/nav-head-m';
+
+import role1 from '../../../../extras/wap/img/m-role-1.png';
+import role2 from '../../../../extras/wap/img/m-role-2.png';
+import role3 from '../../../../extras/wap/img/m-role-3.png';
+import role4 from '../../../../extras/wap/img/m-role-4.png';
 export default {
     data(){
         return{
@@ -208,18 +215,29 @@ export default {
                 
         //     })
         // },
-        // showTip16(){
-        //     let content = `
-        //         <div class="rule-box">
-        //             ${this.tip16Content}
-        //         </div>
-        //     `;
-        //     this.$modal({
-        //         width: 508,
-        //         title: '适龄提示',
-        //         content
-        //     });
-        // }
+        showTip16(){
+            let content = `
+                <div class="rule-box">
+                    ${this.tip16Content}
+                </div>
+            `;
+            this.$modal({
+                width: 508,
+                title: '适龄提示',
+                content
+            });
+        }
+    },
+    components: {
+        NavHeadM,
+        DownloadM,
+        MobileTipM,
+        // KvSwiper,
+        // NewsSwiper,
+        // RoleSwiper,
+        // FunnySwiper,
+        // FeatureSwiper,
+        // QrCodes
     },
     mounted(){
         // this.getIndexNews(0,5);
@@ -229,29 +247,6 @@ export default {
         this.getContent('wap_top_img,wap_icon,wap_reserve_link,wap_download_qr,wap_download_android,wap_download_appstore,wap_kv,funny_img,wap_feature_img,footer_qr,gamesite_fcm_content_tips,gamesite_fcm_tips');
     }
 }
-// import {jsonp} from 'axios-jsonp-pro';
-// import apiUrl from '../../assets/js/apiUrl.js';
-// export default {
-//     data(){
-//         return{
-//         }
-//     },
-//     methods: {
-//         getContent(keys){
-//             let _this = this;
-//             jsonp(apiUrl.get_cont,{
-//                 params:{
-//                     key: keys
-//                 }
-//             }).then(res=>{
-                
-//             })
-//         }
-//     },
-//     mounted(){
-//         this.getContent('37_index_focus_wap');
-//     }
-// }
 </script>
 <style lang="scss" scoped>
 </style>

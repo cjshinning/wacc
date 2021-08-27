@@ -7,15 +7,21 @@ const Webpack = require('webpack');
 const webpackConfig = require('../build/webpack.deploy');
 const settings = require('../config/settings');
 const { log } = require('../lib/util');
+const SvnWebpackPlugin = require('../plugins/svn-webpack-plugin');
 
 async function uploadAssets(src, dist, msg){
     return new Promise(async (resolve, reject) => {
         const svnPath = path.resolve(dist, settings.appId);
         const devPath = path.resolve(src, settings.appId);
         
-        await fs.copy(devPath, svnPath)
+        await fs.copy(devPath, svnPath);
+        resolve();
         
+        // 过滤多余文件（模板）
         settings.pages.forEach(page => {
+            if(page.indexOf('wap') !== -1){
+                page = page.split('/').join('_');
+            }
             const htmPath = path.join(svnPath, page.substring(0, page.length-1));
             fs.stat(htmPath, (err, stats) => {
                 if(err) throw err;
@@ -26,6 +32,13 @@ async function uploadAssets(src, dist, msg){
             });
             return;
         })
+
+        // console.log(SvnWebpackPlugin)
+
+        // new SvnWebpackPlugin({
+        //     options: true
+        // });
+
         // return;
         // svn = new SvnUploading({
         //     cwd: dist
@@ -51,21 +64,14 @@ async function uploadTpl(src, dist, msg){
             if(err) throw err;
             files.forEach(filename => {
                 const filedir = path.join(svnPath, filename);
+                // console.log(filedir);
                 fs.stat(filedir, (err, stats) => {
                     if(err) throw err;
-                    // 过滤多余文件
+                    // 过滤多余文件（静态资源）
                     const isFile = stats.isFile();
-                    if(!isFile && filedir.indexOf('wap') === -1){
-                        fs.remove(filedir, err => {
-                            if(err) throw err;
-                        })
+                    if(!isFile){
+                        fs.removeSync(filedir);
                     }
-                    // if(isFile){
-                    //     if(filedir.indexOf('pc') !== -1){
-                    //         spawn("mv", [filedir, path.resolve(svnPath, '../')]);
-                    //         fs.removeSync(svnPath)
-                    //     }
-                    // }
                     resolve();
                 })
             })

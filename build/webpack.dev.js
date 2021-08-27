@@ -2,6 +2,37 @@ const path = require('path');
 const merge = require('webpack-merge');
 const settings = require('../config/settings');
 const commonConfig = require('./webpack.common');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function createHtmlWebpackPlugin(){
+    const htmlWebpackPluginResult = [];
+    settings.pages.forEach(item => {
+        let chunk = '';
+        let templatePath = '';
+        if(item.indexOf('wap') === -1){
+            chunk = item.split('.html')[0];
+            templatePath = `./templates/pc/${chunk}.html`;
+            // console.log(chunk, templatePath);
+            htmlWebpackPluginResult.push(
+                new HtmlWebpackPlugin({
+                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
+                    filename: item,
+                    chunks: ['vendors', chunk]
+                })
+            );
+        }else{
+            chunk = item.split('.html')[0].split('/').join('_');
+            htmlWebpackPluginResult.push(
+                new HtmlWebpackPlugin({
+                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
+                    filename: item,
+                    chunks: ['vendors', chunk]
+                })
+            );
+        }
+    });
+    return htmlWebpackPluginResult;
+}
 
 const devConfig = {
     mode: 'development',
@@ -16,7 +47,7 @@ const devConfig = {
         contentBase: path.resolve(settings.basePath,'src',settings.appId),
         open: true,
         hot: true,
-        historyApiFallback: true
+        quiet: true
     },
     module: {
         rules: [
@@ -34,12 +65,15 @@ const devConfig = {
                     options: {
                         name: '[name].[ext]',
                         outputPath: 'images',
-                        limit: 10240
+                        limit: 10240,
                     }
                 }
             },
         ]
     },
+    plugins: [
+        ...createHtmlWebpackPlugin(),
+    ]
 }
 
 let scssRule = null;
