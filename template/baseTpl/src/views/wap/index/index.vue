@@ -3,12 +3,41 @@
         <nav-head-m :config="navConfig"></nav-head-m>
         <section class="banner">
             <div class="kv">
-                <a :href="topImg.link">
+                <a v-if="topImg.links && topImg.links!=='javascript:;'" :href="topImg.link">
+                    <img :src="topImg.img" width="100%" alt="">
+                </a>
+                <a v-else href="javascript:;">
                     <img :src="topImg.img" width="100%" alt="">
                 </a>
             </div>
             <download-m :config="downloadConfig"></download-m>
             <a href="javascript:;" class="gamesite-tip16" v-if="tip16Content" @click="showTip16()" :style="{top: tip16Config.index_top&&tip16Config.index_top+'px', left: tip16Config.index_left&&tip16Config.index_left+'px', backgroundImage: `url(${tip16Config.index_img}`}"></a>
+        </section>
+        <section class="section1">
+            <h2 class="title">资讯栏</h2>
+            <div class="kv-wrap">
+                <kv-swiper-m :kv="kvConfig"></kv-swiper-m>
+                <div class="paper-clip"></div>
+                <div class="civet-cat"></div>
+            </div>
+            <news-swiper-m :news="indexNews"></news-swiper-m>
+        </section>
+        <section class="section2">
+            <h2 class="title">职业介绍</h2>
+            <div class="role-wrap">
+                <role-swiper-m :role="roleConfig"></role-swiper-m>
+            </div>
+        </section>
+        <section class="section3">
+            <h2 class="title">搞怪图鉴</h2>
+            <funny-swiper-m :funny="funnyConfig"></funny-swiper-m>
+        </section>
+        <section class="section4">
+            <h2 class="title">特色玩法</h2>
+            <feature-swiper-m :feature="fetureConfig"></feature-swiper-m>
+        </section>
+        <section class="section5">
+            <qr-codes-m :qrcode="qrcodeConfig"></qr-codes-m>
         </section>
         <mobile-tip-m></mobile-tip-m>
     </div>
@@ -21,11 +50,17 @@ import apiUrl from '../../../assets/wap/js/apiUrl.js';
 import DownloadM from '../../../components/wap/download-m/download-m';
 import MobileTipM from '../../../components/wap/mobile-tip-m/mobile-tip-m';
 import NavHeadM from '../../../components/wap/nav-head-m/nav-head-m';
+import KvSwiperM from '../../../components/wap/kv-swiper-m/kv-swiper-m';
+import NewsSwiperM from '../../../components/wap/news-swiper-m/news-swiper-m';
+import RoleSwiperM from '../../../components/wap/role-swiper-m/role-swiper-m';
+import FunnySwiperM from '../../../components/wap/funny-swiper-m/funny-swiper-m';
+import FeatureSwiperM from '../../../components/wap/feature-swiper-m/feature-swiper-m';
+import QrCodesM from '../../../components/wap/qr-codes-m/qr-codes-m';
 
-import role1 from '../../../../extras/wap/img/role-1.png';
-import role2 from '../../../../extras/wap/img/role-2.png';
-import role3 from '../../../../extras/wap/img/role-3.png';
-import role4 from '../../../../extras/wap/img/role-4.png';
+import role1 from '../../../../extras/wap/img/m-role-1.png';
+import role2 from '../../../../extras/wap/img/m-role-2.png';
+import role3 from '../../../../extras/wap/img/m-role-3.png';
+import role4 from '../../../../extras/wap/img/m-role-4.png';
 export default {
     data(){
         return{
@@ -189,32 +224,32 @@ export default {
                 }
             })
         },
-        // getIndexNews(cateId, size){
-        //     jsonp(apiUrl.index_news,{
-        //         params:{
-        //             cate_id: cateId,
-        //             size
-        //         }
-        //     }).then(res=>{
-        //         if(res.code === 1){
-        //             switch(cateId){
-        //                 case 0: 
-        //                     this.indexNews.zonghe = res.data;
-        //                     break;
-        //                 case 1:
-        //                     this.indexNews.xinwen = res.data;
-        //                     break;
-        //                 case 2:
-        //                     this.indexNews.huodong = res.data;
-        //                     break;
-        //                 case 4:
-        //                     this.indexNews.gonglue = res.data;
-        //                     break;
-        //             }
-        //         }
+        getIndexNews(cateId, size){
+            jsonp(apiUrl.index_news,{
+                params:{
+                    cate_id: cateId,
+                    size
+                }
+            }).then(res=>{
+                if(res.code === 1){
+                    switch(cateId){
+                        case 0: 
+                            this.indexNews.zonghe = res.data;
+                            break;
+                        case 1:
+                            this.indexNews.xinwen = res.data;
+                            break;
+                        case 2:
+                            this.indexNews.huodong = res.data;
+                            break;
+                        case 4:
+                            this.indexNews.gonglue = res.data;
+                            break;
+                    }
+                }
                 
-        //     })
-        // },
+            })
+        },
         showTip16(){
             let content = `
                 <div class="rule-box">
@@ -232,18 +267,18 @@ export default {
         NavHeadM,
         DownloadM,
         MobileTipM,
-        // KvSwiper,
-        // NewsSwiper,
-        // RoleSwiper,
-        // FunnySwiper,
-        // FeatureSwiper,
-        // QrCodes
+        KvSwiperM,
+        NewsSwiperM,
+        RoleSwiperM,
+        FunnySwiperM,
+        FeatureSwiperM,
+        QrCodesM
     },
     mounted(){
-        // this.getIndexNews(0,5);
-        // this.getIndexNews(1,5);
-        // this.getIndexNews(2,5);
-        // this.getIndexNews(4,5);
+        this.getIndexNews(0,5);
+        this.getIndexNews(1,5);
+        this.getIndexNews(2,5);
+        this.getIndexNews(4,5);
         this.getContent('wap_top_img,wap_icon,wap_reserve_link,wap_download_qr,wap_download_android,wap_download_appstore,wap_kv,funny_img,wap_feature_img,footer_qr,gamesite_fcm_content_tips,gamesite_fcm_tips');
     }
 }

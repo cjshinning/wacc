@@ -3,25 +3,79 @@
         <div class="banner">
             <div class="inner">
                 <div class="kv">
-                    <a :href="topImg.link" target="_blank">
+                    <a v-if="topImg.links && topImg.links!=='javascript:;'" :href="topImg.link" target="_blank">
+                        <img :src="topImg.img" alt="">
+                    </a>
+                    <a v-else href="javascript:;">
                         <img :src="topImg.img" alt="">
                     </a>
                 </div>
+                <div class="cloud"></div>
                 <main-download :download="downloadConfig"></main-download>
-                <a href="javascript:;" class="btn-play"></a>
+                <a href="javascript:;" class="gamesite-tip16" v-if="tip16Content" @click="showTip16()" :style="{top: tip16Config.mob_index_top&&tip16Config.mob_index_top+'px', left: tip16Config.mob_index_left&&tip16Config.mob_index_left+'px', backgroundImage: `url(${tip16Config.mob_index_img}`}"></a>
+                <a href="javascript:;" class="btn-play" @click.prevent="showVideo()"></a>
             </div>
         </div>
         <top-nav></top-nav>
+        <div class="section1">
+            <div class="inner">
+                <h2 class="title">资讯栏</h2>
+                <div class="main">
+                    <div class="kv-wrap">
+                        <kv-swiper :kv="kvConfig"></kv-swiper>
+                        <div class="paper-clip"></div>
+                        <div class="civet-cat"></div>
+                    </div>
+                    <news-swiper :news="indexNews"></news-swiper>
+                </div>
+                <div class="balloon"></div>
+            </div>
+        </div>
+        <div class="section2">
+            <div class="inner">
+                <h2 class="title">职业介绍</h2>
+                <role-tab :roles="roleConfig"></role-tab>
+            </div>
+        </div> 
+        <div class="section3">
+            <div class="inner">
+                <h2 class="title">搞怪图鉴</h2>
+                <funny-swiper :funny="funnyConfig"></funny-swiper>
+            </div>
+        </div>
+        <div class="section4">
+            <div class="inner">
+                <h2 class="title">特色玩法</h2>
+                <feature-swiper :feature="fetureConfig"></feature-swiper>
+            </div>
+        </div>
+        <div class="section5">
+            <div class="inner">
+                <qr-codes :qrcode="qrcodeConfig"></qr-codes>
+            </div>
+        </div>
+        <div class="gc-pic">
+            <img :src="gcPic" width="100%" alt="">
+        </div>
+        <common-footer></common-footer>  
     </div>
 </template>
 <script>
-import '../../../assets/pc/css/main.scss';
-import '../../../assets/pc/js/initLogin.js';
 import {jsonp} from 'axios-jsonp-pro';
 import apiUrl from '../../../assets/pc/js/apiUrl.js';
 
+import '../../../assets/pc/css/main.scss';
+import '../../../assets/pc/js/initLogin.js';
+
+import CommonFooter from '../../../components/pc/common-footer/common-footer';
 import MainDownload from '../../../components/pc/main-download/main-download';
 import TopNav from '../../../components/pc/top-nav/top-nav';
+import KvSwiper from '../../../components/pc/kv-swiper/kv-swiper';
+import NewsSwiper from '../../../components/pc/news-swiper/news-swiper';
+import RoleTab from '../../../components/pc/role-tab/role-tab';
+import FunnySwiper from '../../../components/pc/funny-swiper/funny-swiper';
+import FeatureSwiper from '../../../components/pc/feature-swiper/feature-swiper';
+import QrCodes from '../../../components/pc/qr-codes/qr-codes';
 
 import role1 from '../../../../extras/pc/img/role-1.png';
 import role2 from '../../../../extras/pc/img/role-2.png';
@@ -83,6 +137,9 @@ export default {
             topVideo: '',
             gcPic: ''
         }
+    },
+    computed: {
+        
     },
     methods: {
         getContent(keys){
@@ -183,60 +240,71 @@ export default {
                 }
             })
         },
-        // getIndexNews(cateId, size){
-        //     jsonp(apiUrl.index_news,{
-        //         params:{
-        //             cate_id: cateId,
-        //             size
-        //         }
-        //     }).then(res=>{
-        //         if(res.code === 1){
-        //             switch(cateId){
-        //                 case 0: 
-        //                     this.indexNews.zonghe = res.data;
-        //                     break;
-        //                 case 1:
-        //                     this.indexNews.xinwen = res.data;
-        //                     break;
-        //                 case 2:
-        //                     this.indexNews.huodong = res.data;
-        //                     break;
-        //                 case 4:
-        //                     this.indexNews.gonglue = res.data;
-        //                     break;
-        //             }
-        //         }
+        getIndexNews(cateId, size){
+            jsonp(apiUrl.index_news,{
+                params:{
+                    cate_id: cateId,
+                    size
+                }
+            }).then(res=>{
+                if(res.code === 1){
+                    switch(cateId){
+                        case 0: 
+                            this.indexNews.zonghe = res.data;
+                            break;
+                        case 1:
+                            this.indexNews.xinwen = res.data;
+                            break;
+                        case 2:
+                            this.indexNews.huodong = res.data;
+                            break;
+                        case 4:
+                            this.indexNews.gonglue = res.data;
+                            break;
+                    }
+                }
                 
-        //     })
-        // },
-        // showTip16(){
-        //     let content = `
-        //         <div class="rule-box">
-        //             ${this.tip16Content}
-        //         </div>
-        //     `;
-        //     this.$modal({
-        //         width: 508,
-        //         title: '适龄提示',
-        //         content
-        //     });
-        // },
-        // showVideo(){
-        //     this.$video({
-        //         videoSrc: this.topVideo
-        //     })
-        // }
+            })
+        },
+        showTip16(){
+            let content = `
+                <div class="rule-box">
+                    ${this.tip16Content}
+                </div>
+            `;
+            this.$modal({
+                width: 508,
+                title: '适龄提示',
+                content
+            });
+        },
+        showVideo(){
+            this.$video({
+                videoSrc: this.topVideo
+            })
+        }
     },
     components: {
+        CommonFooter,
         MainDownload,
-        TopNav
+        TopNav,
+        KvSwiper,
+        NewsSwiper,
+        RoleTab,
+        FunnySwiper,
+        FeatureSwiper,
+        QrCodes
     },
     mounted(){
-        // this.getIndexNews(0,6);
-        // this.getIndexNews(1,6);
-        // this.getIndexNews(2,6);
-        // this.getIndexNews(4,6);
+        this.getIndexNews(0,6);
+        this.getIndexNews(1,6);
+        this.getIndexNews(2,6);
+        this.getIndexNews(4,6);
         this.getContent('top_img,pc_qrcode_download,download_and_link,download_app_link,index_focus,funny_img,feature_img,footer_qr,reserve_link,gamesite_fcm_content_tips,gamesite_fcm_tips,top_video,gc_pic');
     }
 }
 </script>
+<style lang="scss" scoped>
+
+</style>
+

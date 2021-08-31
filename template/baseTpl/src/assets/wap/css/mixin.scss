@@ -1,4 +1,13 @@
 /* 移动端px->rem 单位$ppr */
 $divide: 10 !default;
 $pswWidth: 750;
-$ppr: 1rem/($pswWidth / $divide);
+// $ppr: 1rem/($pswWidth / $divide);
+$ppr: 1px;
+
+// @mixin sprite($sprite) {
+//     @include sprite-image($sprite);
+//     @include sprite-position($sprite);
+//     @include sprite-width($sprite);
+//     @include sprite-height($sprite);
+//     background-size: #{$spritesheet-width} #{$spritesheet-height};
+// }

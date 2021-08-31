@@ -6,7 +6,8 @@
                 <div class="modal-title" v-html="title"></div>
                 <a href="javascript:;" class="modal-close" @click.prevent="closeCb()"></a>
             </div>
-            <div class="modal-body" v-html="content" :style="{ width: width/75 + 'rem', height: height === 'auto' ? height : height/75 + 'rem'}"></div>
+            <!-- <div class="modal-body" v-html="content" :style="{ width: width/75 + 'rem', height: height === 'auto' ? height : height/75 + 'rem'}"></div> -->
+            <div class="modal-body" v-html="content" :style="{ width: width + 'px', height: height === 'auto' ? height : height + 'px'}"></div>
             <div class="modal-footer">
                 <template v-for="(item,index) in buttons">
                     <a href="javascript:;" class="modal-btn" :key="index" @click.prevent="buttonCb[index]()">{{item.text}}</a>

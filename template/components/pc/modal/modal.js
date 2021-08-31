@@ -7,6 +7,7 @@ const modalConstructor = Vue.extend(modalComponent);
 
 class Modal{
     constructor(obj){
+        // debugger;
         let that = this;
         const defaultObj = {
             width: 508,
@@ -14,9 +15,6 @@ class Modal{
             className: '',
             title: '温馨提示',
             content: '',
-            closeCb(){
-                that.hide();
-            },
             buttons:[{
                 text: '确定',
                 callback(){
@@ -29,6 +27,11 @@ class Modal{
             el: document.createElement('div'),
             data(){
                 return paramObj;
+            },
+            methods: {
+                closeCb(){
+                    that.hide();
+                }
             },
             computed: {
                 buttonCb(){
