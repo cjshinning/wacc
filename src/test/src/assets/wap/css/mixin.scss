@@ -1,0 +1,4 @@
+/* 移动端px->rem 单位$ppr */
+$divide: 10 !default;
+$pswWidth: 750;
+$ppr: 1rem/($pswWidth / $divide);

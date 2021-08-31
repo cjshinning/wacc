@@ -6,7 +6,7 @@
                     <a v-if="topImg.links && topImg.links!=='javascript:;'" :href="topImg.link" target="_blank">
                         <img :src="topImg.img" alt="">
                     </a>
-                    <a v-else :href="topImg.link">
+                    <a v-else href="javascript:;">
                         <img :src="topImg.img" alt="">
                     </a>
                 </div>
@@ -64,7 +64,7 @@
 import {jsonp} from 'axios-jsonp-pro';
 import apiUrl from '../../../assets/pc/js/apiUrl.js';
 
-import '../../../assets/pc/css/main_index.scss';
+import '../../../assets/pc/css/main.scss';
 import '../../../assets/pc/js/initLogin.js';
 
 import CommonFooter from '../../../components/pc/common-footer/common-footer';

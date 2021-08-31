@@ -142,5 +142,18 @@ module.exports = {
         new CleanWebpackPlugin(),
         new VueLoaderPlugin(),
         new FriendlyErrorsWebpackPlugin(),
-    ]
+    ],
+    // performance: false,
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'async',
+    //         cacheGroups: {
+    //             vendors: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 priority: -10,
+    //                 name: 'vendors'
+    //             }
+    //         }
+    //     }
+    // },
 };

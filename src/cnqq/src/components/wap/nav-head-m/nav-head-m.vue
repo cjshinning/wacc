@@ -43,31 +43,31 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
-    width: 750*$ppr;
-    height: 95*$ppr;
-    padding: 0 10*$ppr 0 136*$ppr;
+    width: 750px;
+    height: 95px;
+    padding: 0 10px 0 136px;
     background: rgba(255,255,255,0.9);
     z-index: 999;
     .left{
         display: flex;
         .icon{
             position: absolute;
-            left: 7*$ppr;
-            top: 9*$ppr;
-            width: 114*$ppr;
-            height: 114*$ppr;
+            left: 7px;
+            top: 9px;
+            width: 114px;
+            height: 114px;
         }
         .info{
             h2{
-                height: 40*$ppr;
-                line-height: 40*$ppr;
-                font-size: 32*$ppr;
+                height: 40px;
+                line-height: 40px;
+                font-size: 32px;
                 color: #141414;
             }
             p{
-                height: 32*$ppr;
-                line-height: 32*$ppr;
-                font-size: 24*$ppr;
+                height: 32px;
+                line-height: 32px;
+                font-size: 24px;
                 color: #626161;
             }
         }
@@ -76,13 +76,13 @@ export default {
         display: flex;
         a{
             display: block;
-            width: 149*$ppr;
-            height: 63*$ppr;
-            line-height: 63*$ppr;
-            margin-right: 10*$ppr;
-            border-radius: 10*$ppr;
+            width: 149px;
+            height: 63px;
+            line-height: 63px;
+            margin-right: 10px;
+            border-radius: 10px;
             text-align: center;
-            font-size: 22*$ppr;
+            font-size: 22px;
             color: #f5f5f5;
             &.btn-subscribe{
                 background: #cc5e36;

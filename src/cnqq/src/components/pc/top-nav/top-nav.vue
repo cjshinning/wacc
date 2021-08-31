@@ -3,19 +3,19 @@
         <div class="inner">
             <ul>
                 <li class="nav-1">
-                    <a href="//www.37.com/setdl/" target="_blank">官网首页<i></i></a>
+                    <a href="//www.37.com/cnqq/" target="_blank">官网首页<i></i></a>
                 </li>
                 <li class="nav-2">
-                    <a href="//www.37.com/setdl/#/xinwen?page=1" target="_blank">资讯中心<i></i></a>
+                    <a href="//www.37.com/cnqq/list.html?cate=xinwen&page=1" target="_blank">资讯中心<i></i></a>
                 </li>
                 <li class="nav-3">
-                    <a href="//www.37.com/setdl/#/gonglue?page=1" target="_blank">游戏特色<i></i></a>
+                    <a href="//www.37.com/cnqq/list.html?cate=gonglue&page=1" target="_blank">游戏特色<i></i></a>
                 </li>
                 <li class="nav-4">
                     <a href="//kf.37.com/" target="_blank">客服中心<i></i></a>
                 </li>
             </ul>
-            <a href="//www.37.com/setdl/" target="_blank" class="logo"></a>
+            <a href="//www.37.com/cnqq/" target="_blank" class="logo"></a>
         </div>
     </div>
 </template>

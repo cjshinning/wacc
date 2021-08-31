@@ -1,7 +1,10 @@
 <template>
     <swiper class="swiper" ref="kvwiper" :options="swiperOptions" v-if="showSwiper">
         <swiper-slide v-for="(item,index) in kv.imgs" :key="index">
-            <a :href="kv.links[index]" target="_blank">
+            <a v-if="kv.links[index] && topImg.links!=='javascript:;'" :href="kv.links[index]" target="_blank">
+                <img v-lazy="item" width="506" height="562" alt="">
+            </a>
+            <a v-else href="javascript:;" style="cursor:default;">
                 <img v-lazy="item" width="506" height="562" alt="">
             </a>
         </swiper-slide>

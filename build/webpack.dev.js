@@ -63,7 +63,7 @@ const devConfig = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        name: '[name].[ext]',
+                        name: '[name]_[hash:8].[ext]',
                         outputPath: 'images',
                         limit: 10240,
                     }
