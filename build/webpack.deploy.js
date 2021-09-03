@@ -80,25 +80,25 @@ const deployConfig = {
         ]),
         // new htmlTohtmWebpackPlugin(settings.pages)
     ],
-    performance: false,
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-            minChunks: 1,
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10,
-                    name: 'vendors'
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true,
-                },
-            }
-        }
-    },
+    // performance: false,
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //         minChunks: 1,
+    //         cacheGroups: {
+    //             vendors: {
+    //                 test: /[\\/]node_modules[\\/]/,
+    //                 priority: -10,
+    //                 name: 'vendors'
+    //             },
+    //             default: {
+    //                 minChunks: 2,
+    //                 priority: -20,
+    //                 reuseExistingChunk: true,
+    //             },
+    //         }
+    //     }
+    // },
 }
 
 let scssRule = null;

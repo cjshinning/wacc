@@ -17,21 +17,21 @@ async function uploadAssets(src, dist, msg){
         await fs.copy(devPath, svnPath);
         resolve();
         
-        // 过滤多余文件（模板）
-        settings.pages.forEach(page => {
-            if(page.indexOf('wap') !== -1){
-                page = page.split('/').join('_');
-            }
-            const htmPath = path.join(svnPath, page.substring(0, page.length-1));
-            fs.stat(htmPath, (err, stats) => {
-                if(err) throw err;
-                if(stats.isFile()){
-                    fs.unlink(htmPath);
-                    resolve();
-                }
-            });
-            return;
-        })
+        // // 过滤多余文件（模板）
+        // settings.pages.forEach(page => {
+        //     if(page.indexOf('wap') !== -1){
+        //         page = page.split('/').join('_');
+        //     }
+        //     const htmPath = path.join(svnPath, page.substring(0, page.length-1));
+        //     fs.stat(htmPath, (err, stats) => {
+        //         if(err) throw err;
+        //         if(stats.isFile()){
+        //             fs.unlink(htmPath);
+        //             resolve();
+        //         }
+        //     });
+        //     return;
+        // })
 
         // console.log(SvnWebpackPlugin)
 
@@ -58,24 +58,25 @@ async function uploadTpl(src, dist, msg){
         const svnPath = path.resolve(dist, settings.appId);
         const devPath = path.resolve(src, settings.appId);
         
-        await fs.copy(devPath, svnPath)
+        await fs.copy(devPath, svnPath);
+        resolve();
         
-        fs.readdir(svnPath, (err, files) => {
-            if(err) throw err;
-            files.forEach(filename => {
-                const filedir = path.join(svnPath, filename);
-                // console.log(filedir);
-                fs.stat(filedir, (err, stats) => {
-                    if(err) throw err;
-                    // 过滤多余文件（静态资源）
-                    const isFile = stats.isFile();
-                    if(!isFile){
-                        fs.removeSync(filedir);
-                    }
-                    resolve();
-                })
-            })
-        })
+        // fs.readdir(svnPath, (err, files) => {
+        //     if(err) throw err;
+        //     files.forEach(filename => {
+        //         const filedir = path.join(svnPath, filename);
+        //         // console.log(filedir);
+        //         fs.stat(filedir, (err, stats) => {
+        //             if(err) throw err;
+        //             // 过滤多余文件（静态资源）
+        //             const isFile = stats.isFile();
+        //             if(!isFile){
+        //                 fs.removeSync(filedir);
+        //             }
+        //             resolve();
+        //         })
+        //     })
+        // })
     })
 }
 
