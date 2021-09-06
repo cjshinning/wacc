@@ -144,16 +144,32 @@ module.exports = {
         new FriendlyErrorsWebpackPlugin(),
     ],
     // performance: false,
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: 'async',
-    //         cacheGroups: {
-    //             vendors: {
-    //                 test: /[\\/]node_modules[\\/]/,
-    //                 priority: -10,
-    //                 name: 'vendors'
-    //             }
-    //         }
-    //     }
-    // },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            minSize: 30000,
+            maxSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            automaticNameMaxLength: 30,
+            name: true,
+            cacheGroups: {
+                default: false,
+                vendors: false,
+                // common: {
+                //     minChunks: 2,
+                //     priority: 10,
+                //     reuseExistingChunk: true,
+                //     name:'common'
+                // },
+                vendor: {
+                  test: /[\\/]node_modules[\\/]/,
+                  priority: 20,
+                  name:'vendor'
+                }
+            }
+        }
+    },
 };

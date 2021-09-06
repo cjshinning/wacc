@@ -21,7 +21,7 @@ function createHtmlWebpackPlugin(){
                 new HtmlWebpackPlugin({
                     template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
                     filename: `${chunk}.htm`,
-                    chunks: ['vendors', chunk]
+                    chunks: ['vendor', chunk]
                 })
             );
         }else{
@@ -30,7 +30,7 @@ function createHtmlWebpackPlugin(){
                 new HtmlWebpackPlugin({
                     template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
                     filename: `${chunk}.htm`,
-                    chunks: ['vendors', chunk]
+                    chunks: ['vendor', chunk]
                 })
             );
         }

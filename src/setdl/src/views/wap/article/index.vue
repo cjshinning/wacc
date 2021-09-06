@@ -5,7 +5,7 @@
             <section class="main">
                 <article class="article-content">
                     <h3>{{content.TITLE}}</h3>
-                    <p class="detail">37游戏      {{content.PUB_DATE}}</p>
+                    <p class="detail">{{content.PUB_DATE}}</p>
                     <div class="line"></div>
                     <div class="cont" v-html="content.CONTENT">
                     </div>

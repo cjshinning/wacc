@@ -17,16 +17,18 @@ function createHtmlWebpackPlugin(){
                 new HtmlWebpackPlugin({
                     template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
                     filename: item,
-                    chunks: ['vendors', chunk]
+                    chunks: ['vendor', chunk]
                 })
             );
         }else{
             chunk = item.split('.html')[0].split('/').join('_');
+            templatePath = `./templates/wap/${chunk.split('_')[1]}.html`;
+            // console.log(chunk, templatePath);
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
                     template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
                     filename: item,
-                    chunks: ['vendors', chunk]
+                    chunks: ['vendor', chunk]
                 })
             );
         }
