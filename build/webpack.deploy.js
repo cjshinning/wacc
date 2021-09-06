@@ -6,7 +6,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const htmlTohtmWebpackPlugin = require('../plugins/html2htm-webpack-plugin');
 
 function createHtmlWebpackPlugin(){
     const htmlWebpackPluginResult = [];
@@ -77,28 +76,8 @@ const deployConfig = {
         }),
         new CopyPlugin([
             { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
-        ]),
-        // new htmlTohtmWebpackPlugin(settings.pages)
+        ])
     ],
-    // performance: false,
-    // optimization: {
-    //     splitChunks: {
-    //         chunks: 'all',
-    //         minChunks: 1,
-    //         cacheGroups: {
-    //             vendors: {
-    //                 test: /[\\/]node_modules[\\/]/,
-    //                 priority: -10,
-    //                 name: 'vendors'
-    //             },
-    //             default: {
-    //                 minChunks: 2,
-    //                 priority: -20,
-    //                 reuseExistingChunk: true,
-    //             },
-    //         }
-    //     }
-    // },
 }
 
 let scssRule = null;

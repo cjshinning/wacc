@@ -7,7 +7,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const htmlTohtmWebpackPlugin = require('../plugins/html2htm-webpack-plugin');
 
 function createHtmlWebpackPlugin(){
     const htmlWebpackPluginResult = [];
@@ -79,7 +78,6 @@ const prodConfig = {
         new CopyPlugin([
             { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
         ]),
-        // new htmlTohtmWebpackPlugin(settings.pages),
         new WebpackUploadPlugin({//上传资源到测试环境
             receiver: settings.wwwUploadScript,
             to: path.join('/www', settings.wwwDeployDomain, settings.appId),
