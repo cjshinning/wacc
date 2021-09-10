@@ -1,9 +1,14 @@
 const fs = require('fs-extra');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
 const WebpackUploadPlugin = require('webpack-upload');
 const CopyPlugin = require("copy-webpack-plugin");
+//抽离CSS样式
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//压缩JS
+const TerserJSPlugin = require('terser-webpack-plugin');
+//压缩css
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -127,7 +132,18 @@ const prodConfig = {
                 }
             }
         })
-    ]
+    ],
+    optimization: {
+        minimizer: [
+            new TerserJSPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true
+            }), 
+            //压缩css
+            // new OptimizeCSSAssetsPlugin()
+        ]
+    }
 }
 
 let scssRule = null;

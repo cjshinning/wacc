@@ -141,7 +141,7 @@ module.exports = {
         ...createSpritesmithPlugin(),
         new CleanWebpackPlugin(),
         new VueLoaderPlugin(),
-        new FriendlyErrorsWebpackPlugin(),
+        // new FriendlyErrorsWebpackPlugin(),
     ],
     // performance: false,
     optimization: {
