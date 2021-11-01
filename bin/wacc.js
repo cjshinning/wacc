@@ -1,15 +1,20 @@
 #!/usr/bin/env node
-const { program } = require('commander');
+
+const {
+    program
+} = require('commander');
 const ora = require('ora');
 const settings = require('../config/settings');
-const { log } = require('../lib/util');
+const {
+    log
+} = require('../lib/util');
 const path = require('path');
 
 // 检查官网开发目录是否正确
-function checkId(appId, cb){
-    if(/^\w+$/.test(appId)){
+function checkId(appId, cb) {
+    if (/^\w+$/.test(appId)) {
         cb(appId);
-    }else{
+    } else {
         log('请输入正确的官网开发目录！', 'red');
     }
 }
@@ -17,25 +22,25 @@ function checkId(appId, cb){
 program.version('0.0.1');
 
 program
-  .command('init <appId>')
-  .description('项目初始化')
-  .action((appId) => {
-    checkId(appId, () => {
-        settings.appId = appId;
-        require('../command/init')();
-    })
-  });
+    .command('init <appId>')
+    .description('项目初始化')
+    .action((appId) => {
+        checkId(appId, () => {
+            settings.appId = appId;
+            require('../command/init')();
+        })
+    });
 
 program
-  .command('dev <appId>')
-  .description('进入本地开发模式')
-  .action((appId, type) => {
-    process.env.NODE_ENV = 'development';
-    checkId(appId, () => {
-        settings.appId = appId;
-        require('../command/server');
-    })
-  });
+    .command('dev <appId>')
+    .description('进入本地开发模式')
+    .action((appId, type) => {
+        process.env.NODE_ENV = 'development';
+        checkId(appId, () => {
+            settings.appId = appId;
+            require('../command/server');
+        })
+    });
 
 program
     .command('prod <appId>')
@@ -56,7 +61,7 @@ program
     .action((appId) => {
         process.env.NODE_ENV = 'production';
         checkId(appId, () => {
-            settings.appId= appId;
+            settings.appId = appId;
             require('../command/deploy');
         })
     });

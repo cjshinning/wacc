@@ -8,32 +8,32 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 //压缩JS
 const TerserJSPlugin = require('terser-webpack-plugin');
 //压缩css
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function createHtmlWebpackPlugin(){
+function createHtmlWebpackPlugin() {
     const htmlWebpackPluginResult = [];
     settings.pages.forEach(item => {
         let chunk = '';
         let templatePath = '';
-        if(item.indexOf('wap') === -1){
+        if (item.indexOf('wap') === -1) {
             chunk = item.split('.html')[0];
             templatePath = `./templates/pc/${chunk}.html`;
             // console.log(chunk, templatePath);
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/pc/index.html'),
                     filename: `${chunk}.htm`,
                     chunks: ['vendor', chunk]
                 })
             );
-        }else{
+        } else {
             chunk = item.split('.html')[0].split('/').join('_');
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/wap/index.html'),
                     filename: `${chunk}.htm`,
                     chunks: ['vendor', chunk]
                 })
@@ -53,8 +53,7 @@ const prodConfig = {
         publicPath: `//img1.37wanimg.com/${settings.appId}/`,
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -80,10 +79,11 @@ const prodConfig = {
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name][contenthash:8].content.css'
         }),
-        new CopyPlugin([
-            { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
-        ]),
-        new WebpackUploadPlugin({//上传资源到测试环境
+        new CopyPlugin([{
+            from: path.join(settings.basePath, 'src', settings.appId, 'extras/'),
+            to: path.join(settings.basePath, 'dist', settings.appId, "extras/")
+        }]),
+        new WebpackUploadPlugin({ //上传资源到测试环境
             receiver: settings.wwwUploadScript,
             to: path.join('/www', settings.wwwDeployDomain, settings.appId),
             test: (filepath) => {
@@ -96,38 +96,38 @@ const prodConfig = {
                 //         return false;
                 //     }
                 // })
-                if(/\.map$/g.test(filepath)){
+                if (/\.map$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.DS_Store$/g.test(filepath)){
+                if (/\.DS_Store$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.vscode$/g.test(filepath)){
+                if (/\.vscode$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.idea$/g.test(filepath)){
+                if (/\.idea$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.html$/g.test(filepath)){
+                if (/\.html$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.htm$/g.test(filepath)){
+                if (/\.htm$/g.test(filepath)) {
                     return false;
                 }
-                if(!fs.existsSync(watchPath)){
+                if (!fs.existsSync(watchPath)) {
                     return true;
                 }
             }
         }),
-        new WebpackUploadPlugin({//上传模板到测试环境
+        new WebpackUploadPlugin({ //上传模板到测试环境
             receiver: settings.wwwUploadScript,
             to: path.join('/www', settings.wwwTplsDomain, settings.appId),
             test: (filepath) => {
                 //上传过滤
-                if(/\.html$/g.test(filepath)){
+                if (/\.html$/g.test(filepath)) {
                     return false;
                 }
-                if(/\.htm$/g.test(filepath)){
+                if (/\.htm$/g.test(filepath)) {
                     return true;
                 }
             }
@@ -139,9 +139,18 @@ const prodConfig = {
                 cache: true,
                 parallel: true,
                 sourceMap: true
-            }), 
-            //压缩css
-            // new OptimizeCSSAssetsPlugin()
+            }),
+            new OptimizeCSSAssetsPlugin({
+                assetNameRegExp: /\.optimize\.css$/g,
+                cssProcessor: require('cssnano'),
+                cssProcessorOptions: {
+                    safe: true,
+                    discardComments: {
+                        removeAll: true
+                    }
+                },
+                canPrint: true
+            })
         ]
     }
 }
@@ -152,10 +161,10 @@ scssRule = {
     use: [
         MiniCssExtractPlugin.loader,
         {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2
-          }
+            loader: 'css-loader',
+            options: {
+                importLoaders: 2
+            }
         },
         'postcss-loader',
         'sass-loader',
@@ -163,8 +172,8 @@ scssRule = {
             loader: 'sass-resources-loader',
             options: {
                 resources: [
-                    path.resolve(settings.basePath,'src',settings.appId, 'src/assets/pc/css/sprite.scss'),
-                    path.resolve(settings.basePath,'src',settings.appId, 'src/assets/wap/css/sprite.scss')
+                    path.resolve(settings.basePath, 'src', settings.appId, 'src/assets/pc/css/sprite.scss'),
+                    path.resolve(settings.basePath, 'src', settings.appId, 'src/assets/wap/css/sprite.scss')
                 ]
             }
         }

@@ -12,27 +12,27 @@ const settings = require('../config/settings');
 const commonConfig = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function createHtmlWebpackPlugin(){
+function createHtmlWebpackPlugin() {
     const htmlWebpackPluginResult = [];
     settings.pages.forEach(item => {
         let chunk = '';
         let templatePath = '';
-        if(item.indexOf('wap') === -1){
+        if (item.indexOf('wap') === -1) {
             chunk = item.split('.html')[0];
             templatePath = `./templates/pc/${chunk}.html`;
             // console.log(chunk, templatePath);
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/pc/index.html'),
                     filename: `${chunk}.htm`,
                     chunks: ['vendor', chunk]
                 })
             );
-        }else{
+        } else {
             chunk = item.split('.html')[0].split('/').join('_');
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/wap/index.html'),
                     filename: `${chunk}.htm`,
                     chunks: ['vendor', chunk]
                 })
@@ -52,8 +52,7 @@ const deployConfig = {
         publicPath: `//img1.37wanimg.com/${settings.appId}/`,
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.css$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -79,9 +78,10 @@ const deployConfig = {
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name][contenthash:8].content.css'
         }),
-        new CopyPlugin([
-            { from: path.join(settings.basePath,'src',settings.appId,'extras/'), to: path.join(settings.basePath,'dist',settings.appId,"extras/") }
-        ])
+        new CopyPlugin([{
+            from: path.join(settings.basePath, 'src', settings.appId, 'extras/'),
+            to: path.join(settings.basePath, 'dist', settings.appId, "extras/")
+        }])
     ],
     optimization: {
         minimizer: [
@@ -89,9 +89,18 @@ const deployConfig = {
                 cache: true,
                 parallel: true,
                 sourceMap: true
-            }), 
-            //压缩css
-            // new OptimizeCSSAssetsPlugin()
+            }),
+            new OptimizeCSSAssetsPlugin({
+                assetNameRegExp: /\.optimize\.css$/g,
+                cssProcessor: require('cssnano'),
+                cssProcessorOptions: {
+                    safe: true,
+                    discardComments: {
+                        removeAll: true
+                    }
+                },
+                canPrint: true
+            })
         ]
     }
 }
@@ -102,10 +111,10 @@ scssRule = {
     use: [
         MiniCssExtractPlugin.loader,
         {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2
-          }
+            loader: 'css-loader',
+            options: {
+                importLoaders: 2
+            }
         },
         'postcss-loader',
         'sass-loader'

@@ -1,0 +1,266 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$btn-android-h-name: 'btn-android-h';
+$btn-android-h-x: 332px;
+$btn-android-h-y: 88px;
+$btn-android-h-offset-x: -332px;
+$btn-android-h-offset-y: -88px;
+$btn-android-h-width: 156px;
+$btn-android-h-height: 48px;
+$btn-android-h-total-width: 494px;
+$btn-android-h-total-height: 341px;
+$btn-android-h-image: './img/sprite_download_left.png';
+$btn-android-h: (332px, 88px, -332px, -88px, 156px, 48px, 494px, 341px, './img/sprite_download_left.png', 'btn-android-h', );
+$btn-android-name: 'btn-android';
+$btn-android-x: 166px;
+$btn-android-y: 163px;
+$btn-android-offset-x: -166px;
+$btn-android-offset-y: -163px;
+$btn-android-width: 156px;
+$btn-android-height: 48px;
+$btn-android-total-width: 494px;
+$btn-android-total-height: 341px;
+$btn-android-image: './img/sprite_download_left.png';
+$btn-android: (166px, 163px, -166px, -163px, 156px, 48px, 494px, 341px, './img/sprite_download_left.png', 'btn-android', );
+$btn-desk-h-name: 'btn-desk-h';
+$btn-desk-h-x: 166px;
+$btn-desk-h-y: 0px;
+$btn-desk-h-offset-x: -166px;
+$btn-desk-h-offset-y: 0px;
+$btn-desk-h-width: 156px;
+$btn-desk-h-height: 123px;
+$btn-desk-h-total-width: 494px;
+$btn-desk-h-total-height: 341px;
+$btn-desk-h-image: './img/sprite_download_left.png';
+$btn-desk-h: (166px, 0px, -166px, 0px, 156px, 123px, 494px, 341px, './img/sprite_download_left.png', 'btn-desk-h', );
+$btn-desk-name: 'btn-desk';
+$btn-desk-x: 0px;
+$btn-desk-y: 163px;
+$btn-desk-offset-x: 0px;
+$btn-desk-offset-y: -163px;
+$btn-desk-width: 156px;
+$btn-desk-height: 123px;
+$btn-desk-total-width: 494px;
+$btn-desk-total-height: 341px;
+$btn-desk-image: './img/sprite_download_left.png';
+$btn-desk: (0px, 163px, 0px, -163px, 156px, 123px, 494px, 341px, './img/sprite_download_left.png', 'btn-desk', );
+$btn-ios-h-name: 'btn-ios-h';
+$btn-ios-h-x: 332px;
+$btn-ios-h-y: 146px;
+$btn-ios-h-offset-x: -332px;
+$btn-ios-h-offset-y: -146px;
+$btn-ios-h-width: 156px;
+$btn-ios-h-height: 48px;
+$btn-ios-h-total-width: 494px;
+$btn-ios-h-total-height: 341px;
+$btn-ios-h-image: './img/sprite_download_left.png';
+$btn-ios-h: (332px, 146px, -332px, -146px, 156px, 48px, 494px, 341px, './img/sprite_download_left.png', 'btn-ios-h', );
+$btn-ios-name: 'btn-ios';
+$btn-ios-x: 332px;
+$btn-ios-y: 204px;
+$btn-ios-offset-x: -332px;
+$btn-ios-offset-y: -204px;
+$btn-ios-width: 156px;
+$btn-ios-height: 48px;
+$btn-ios-total-width: 494px;
+$btn-ios-total-height: 341px;
+$btn-ios-image: './img/sprite_download_left.png';
+$btn-ios: (332px, 204px, -332px, -204px, 156px, 48px, 494px, 341px, './img/sprite_download_left.png', 'btn-ios', );
+$code-line-name: 'code-line';
+$code-line-x: 166px;
+$code-line-y: 133px;
+$code-line-offset-x: -166px;
+$code-line-offset-y: -133px;
+$code-line-width: 138px;
+$code-line-height: 13px;
+$code-line-total-width: 494px;
+$code-line-total-height: 341px;
+$code-line-image: './img/sprite_download_left.png';
+$code-line: (166px, 133px, -166px, -133px, 138px, 13px, 494px, 341px, './img/sprite_download_left.png', 'code-line', );
+$download-qrcode-name: 'download-qrcode';
+$download-qrcode-x: 0px;
+$download-qrcode-y: 0px;
+$download-qrcode-offset-x: 0px;
+$download-qrcode-offset-y: 0px;
+$download-qrcode-width: 156px;
+$download-qrcode-height: 153px;
+$download-qrcode-total-width: 494px;
+$download-qrcode-total-height: 341px;
+$download-qrcode-image: './img/sprite_download_left.png';
+$download-qrcode: (0px, 0px, 0px, 0px, 156px, 153px, 494px, 341px, './img/sprite_download_left.png', 'download-qrcode', );
+$download-tip-name: 'download-tip';
+$download-tip-x: 332px;
+$download-tip-y: 262px;
+$download-tip-offset-x: -332px;
+$download-tip-offset-y: -262px;
+$download-tip-width: 160px;
+$download-tip-height: 17px;
+$download-tip-total-width: 494px;
+$download-tip-total-height: 341px;
+$download-tip-image: './img/sprite_download_left.png';
+$download-tip: (332px, 262px, -332px, -262px, 160px, 17px, 494px, 341px, './img/sprite_download_left.png', 'download-tip', );
+$download-tit-name: 'download-tit';
+$download-tit-x: 0px;
+$download-tit-y: 326px;
+$download-tit-offset-x: 0px;
+$download-tit-offset-y: -326px;
+$download-tit-width: 160px;
+$download-tit-height: 15px;
+$download-tit-total-width: 494px;
+$download-tit-total-height: 341px;
+$download-tit-image: './img/sprite_download_left.png';
+$download-tit: (0px, 326px, 0px, -326px, 160px, 15px, 494px, 341px, './img/sprite_download_left.png', 'download-tit', );
+$logo-name: 'logo';
+$logo-x: 332px;
+$logo-y: 0px;
+$logo-offset-x: -332px;
+$logo-offset-y: 0px;
+$logo-width: 162px;
+$logo-height: 78px;
+$logo-total-width: 494px;
+$logo-total-height: 341px;
+$logo-image: './img/sprite_download_left.png';
+$logo: (332px, 0px, -332px, 0px, 162px, 78px, 494px, 341px, './img/sprite_download_left.png', 'logo', );
+$qr-douyin-name: 'qr-douyin';
+$qr-douyin-x: 166px;
+$qr-douyin-y: 221px;
+$qr-douyin-offset-x: -166px;
+$qr-douyin-offset-y: -221px;
+$qr-douyin-width: 44px;
+$qr-douyin-height: 44px;
+$qr-douyin-total-width: 494px;
+$qr-douyin-total-height: 341px;
+$qr-douyin-image: './img/sprite_download_left.png';
+$qr-douyin: (166px, 221px, -166px, -221px, 44px, 44px, 494px, 341px, './img/sprite_download_left.png', 'qr-douyin', );
+$qr-kuaishou-name: 'qr-kuaishou';
+$qr-kuaishou-x: 220px;
+$qr-kuaishou-y: 221px;
+$qr-kuaishou-offset-x: -220px;
+$qr-kuaishou-offset-y: -221px;
+$qr-kuaishou-width: 44px;
+$qr-kuaishou-height: 44px;
+$qr-kuaishou-total-width: 494px;
+$qr-kuaishou-total-height: 341px;
+$qr-kuaishou-image: './img/sprite_download_left.png';
+$qr-kuaishou: (220px, 221px, -220px, -221px, 44px, 44px, 494px, 341px, './img/sprite_download_left.png', 'qr-kuaishou', );
+$qr-weibo-name: 'qr-weibo';
+$qr-weibo-x: 274px;
+$qr-weibo-y: 221px;
+$qr-weibo-offset-x: -274px;
+$qr-weibo-offset-y: -221px;
+$qr-weibo-width: 44px;
+$qr-weibo-height: 44px;
+$qr-weibo-total-width: 494px;
+$qr-weibo-total-height: 341px;
+$qr-weibo-image: './img/sprite_download_left.png';
+$qr-weibo: (274px, 221px, -274px, -221px, 44px, 44px, 494px, 341px, './img/sprite_download_left.png', 'qr-weibo', );
+$siber-bottom-name: 'siber-bottom';
+$siber-bottom-x: 212px;
+$siber-bottom-y: 296px;
+$siber-bottom-offset-x: -212px;
+$siber-bottom-offset-y: -296px;
+$siber-bottom-width: 202px;
+$siber-bottom-height: 20px;
+$siber-bottom-total-width: 494px;
+$siber-bottom-total-height: 341px;
+$siber-bottom-image: './img/sprite_download_left.png';
+$siber-bottom: (212px, 296px, -212px, -296px, 202px, 20px, 494px, 341px, './img/sprite_download_left.png', 'siber-bottom', );
+$siber-top-name: 'siber-top';
+$siber-top-x: 0px;
+$siber-top-y: 296px;
+$siber-top-offset-x: 0px;
+$siber-top-offset-y: -296px;
+$siber-top-width: 202px;
+$siber-top-height: 20px;
+$siber-top-total-width: 494px;
+$siber-top-total-height: 341px;
+$siber-top-image: './img/sprite_download_left.png';
+$siber-top: (0px, 296px, 0px, -296px, 202px, 20px, 494px, 341px, './img/sprite_download_left.png', 'siber-top', );
+$split-line-name: 'split-line';
+$split-line-x: 170px;
+$split-line-y: 326px;
+$split-line-offset-x: -170px;
+$split-line-offset-y: -326px;
+$split-line-width: 157px;
+$split-line-height: 5px;
+$split-line-total-width: 494px;
+$split-line-total-height: 341px;
+$split-line-image: './img/sprite_download_left.png';
+$split-line: (170px, 326px, -170px, -326px, 157px, 5px, 494px, 341px, './img/sprite_download_left.png', 'split-line', );
+$spritesheet-width: 494px;
+$spritesheet-height: 341px;
+$spritesheet-image: './img/sprite_download_left.png';
+$spritesheet-sprites: ($btn-android-h, $btn-android, $btn-desk-h, $btn-desk, $btn-ios-h, $btn-ios, $code-line, $download-qrcode, $download-tip, $download-tit, $logo, $qr-douyin, $qr-kuaishou, $qr-weibo, $siber-bottom, $siber-top, $split-line, );
+$spritesheet: (494px, 341px, './img/sprite_download_left.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

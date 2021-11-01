@@ -4,29 +4,29 @@ const settings = require('../config/settings');
 const commonConfig = require('./webpack.common');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-function createHtmlWebpackPlugin(){
+function createHtmlWebpackPlugin() {
     const htmlWebpackPluginResult = [];
     settings.pages.forEach(item => {
         let chunk = '';
         let templatePath = '';
-        if(item.indexOf('wap') === -1){
+        if (item.indexOf('wap') === -1) {
             chunk = item.split('.html')[0];
             templatePath = `./templates/pc/${chunk}.html`;
             // console.log(chunk, templatePath);
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/pc/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/pc/index.html'),
                     filename: item,
                     chunks: ['vendor', chunk]
                 })
             );
-        }else{
+        } else {
             chunk = item.split('.html')[0].split('/').join('_');
             templatePath = `./templates/wap/${chunk.split('_')[1]}.html`;
             // console.log(chunk, templatePath);
             htmlWebpackPluginResult.push(
                 new HtmlWebpackPlugin({
-                    template: path.resolve(settings.basePath,'src',settings.appId,'./templates/wap/index.html'),
+                    template: path.resolve(settings.basePath, 'src', settings.appId, './templates/wap/index.html'),
                     filename: item,
                     chunks: ['vendor', chunk]
                 })
@@ -42,18 +42,17 @@ const devConfig = {
     output: {
         filename: '[name].js',
         chunkFilename: '[name].js',
-        path: path.resolve(settings.basePath,'dist',settings.appId),
+        path: path.resolve(settings.basePath, 'dist', settings.appId),
         publicPath: '/'
     },
     devServer: {
-        contentBase: path.resolve(settings.basePath,'src',settings.appId),
+        contentBase: path.resolve(settings.basePath, 'src', settings.appId),
         open: true,
         hot: true,
         quiet: true
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.css$/i,
                 use: [
                     'style-loader',
@@ -84,10 +83,10 @@ scssRule = {
     use: [
         'style-loader',
         {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2
-          }
+            loader: 'css-loader',
+            options: {
+                importLoaders: 2
+            }
         },
         'postcss-loader',
         'sass-loader'
