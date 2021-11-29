@@ -9,6 +9,28 @@
 //
 // At the bottom of this section, we provide information about the spritesheet itself
 // $spritesheet: width height image $spritesheet-sprites;
+$btn-bullet-h-name: 'btn-bullet-h';
+$btn-bullet-h-x: 88px;
+$btn-bullet-h-y: 0px;
+$btn-bullet-h-offset-x: -88px;
+$btn-bullet-h-offset-y: 0px;
+$btn-bullet-h-width: 25px;
+$btn-bullet-h-height: 25px;
+$btn-bullet-h-total-width: 113px;
+$btn-bullet-h-total-height: 90px;
+$btn-bullet-h-image: './img/sprite_feature_swiper.png';
+$btn-bullet-h: (88px, 0px, -88px, 0px, 25px, 25px, 113px, 90px, './img/sprite_feature_swiper.png', 'btn-bullet-h', );
+$btn-bullet-name: 'btn-bullet';
+$btn-bullet-x: 0px;
+$btn-bullet-y: 65px;
+$btn-bullet-offset-x: 0px;
+$btn-bullet-offset-y: -65px;
+$btn-bullet-width: 25px;
+$btn-bullet-height: 25px;
+$btn-bullet-total-width: 113px;
+$btn-bullet-total-height: 90px;
+$btn-bullet-image: './img/sprite_feature_swiper.png';
+$btn-bullet: (0px, 65px, 0px, -65px, 25px, 25px, 113px, 90px, './img/sprite_feature_swiper.png', 'btn-bullet', );
 $btn-next-name: 'btn-next';
 $btn-next-x: 0px;
 $btn-next-y: 0px;
@@ -16,10 +38,10 @@ $btn-next-offset-x: 0px;
 $btn-next-offset-y: 0px;
 $btn-next-width: 34px;
 $btn-next-height: 55px;
-$btn-next-total-width: 78px;
-$btn-next-total-height: 55px;
+$btn-next-total-width: 113px;
+$btn-next-total-height: 90px;
 $btn-next-image: './img/sprite_feature_swiper.png';
-$btn-next: (0px, 0px, 0px, 0px, 34px, 55px, 78px, 55px, './img/sprite_feature_swiper.png', 'btn-next', );
+$btn-next: (0px, 0px, 0px, 0px, 34px, 55px, 113px, 90px, './img/sprite_feature_swiper.png', 'btn-next', );
 $btn-prev-name: 'btn-prev';
 $btn-prev-x: 44px;
 $btn-prev-y: 0px;
@@ -27,15 +49,15 @@ $btn-prev-offset-x: -44px;
 $btn-prev-offset-y: 0px;
 $btn-prev-width: 34px;
 $btn-prev-height: 55px;
-$btn-prev-total-width: 78px;
-$btn-prev-total-height: 55px;
+$btn-prev-total-width: 113px;
+$btn-prev-total-height: 90px;
 $btn-prev-image: './img/sprite_feature_swiper.png';
-$btn-prev: (44px, 0px, -44px, 0px, 34px, 55px, 78px, 55px, './img/sprite_feature_swiper.png', 'btn-prev', );
-$spritesheet-width: 78px;
-$spritesheet-height: 55px;
+$btn-prev: (44px, 0px, -44px, 0px, 34px, 55px, 113px, 90px, './img/sprite_feature_swiper.png', 'btn-prev', );
+$spritesheet-width: 113px;
+$spritesheet-height: 90px;
 $spritesheet-image: './img/sprite_feature_swiper.png';
-$spritesheet-sprites: ($btn-next, $btn-prev, );
-$spritesheet: (78px, 55px, './img/sprite_feature_swiper.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($btn-bullet-h, $btn-bullet, $btn-next, $btn-prev, );
+$spritesheet: (113px, 90px, './img/sprite_feature_swiper.png', $spritesheet-sprites, );
 
 // The provided mixins are intended to be used with the array-like variables
 //

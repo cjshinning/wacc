@@ -1,10 +1,10 @@
 <template>
   <div class="feature-wrap">
     <swiper class="swiper" :options="swiperOption" ref="FeatureSwiper" v-if="showSwiper">
-      <swiper-slide v-for="(item,index) in feature.imgs" :key="index"><img :data-src="item" class="swiper-lazy" width="100%" alt=""></swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
+      <swiper-slide v-for="(item,index) in config.imgs" :key="index"><img :data-src="item" class="swiper-lazy" width="100%" alt=""></swiper-slide>
+      <!-- <div class="swiper-pagination" slot="pagination"></div>
       <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <div class="swiper-button-next" slot="button-next"></div> -->
     </swiper>
   </div>
 </template>
@@ -15,7 +15,7 @@
 
   export default {
     name: 'FeatureSwiper',
-    props:["feature"],
+    props:["config"],
     components: {
       swiper,
       swiperSlide
@@ -25,7 +25,7 @@
         return this.$refs.FeatureSwiper.swiper
       },
       showSwiper(){
-        return this.feature.imgs.length;
+        return this.config.imgs.length;
       }
     },
     data() {
@@ -39,26 +39,26 @@
           grabCursor: true,
           centeredSlides: true,
           slidesPerView: 'auto',
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-          },
-          autoplay: {
-            delay: 5000,
-            stopOnLastSlide: false,
-            disableOnInteraction: false,
-          },
+          // pagination: {
+          //   el: '.swiper-pagination',
+          //   clickable: true
+          // },
+          // autoplay: {
+          //   delay: 5000,
+          //   stopOnLastSlide: false,
+          //   disableOnInteraction: false,
+          // },
           coverflowEffect: {
             rotate: 0,
-            stretch: 10,
+            stretch: 114,
             depth: 50,
             modifier: 3,
             slideShadows : true
           },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          }
+          // navigation: {
+          //   nextEl: '.swiper-button-next',
+          //   prevEl: '.swiper-button-prev'
+          // }
         }
       }
     },
@@ -71,9 +71,8 @@
   @import './css/sprite.scss';
   @import '../../../assets/wap/css/mixin.scss';
   .feature-wrap {
-    width: 668px;
-    height: 604px;
-    margin: 120px auto 0;
+    width: 650px;
+    height: 763px;
     overflow: hidden;
 
     /deep/ .swiper-button-prev{
@@ -125,8 +124,8 @@
   }
   
   .swiper {
-    width: 668px;
-    height: 544px;
+    width: 650px;
+    height: 763px;
     overflow: visible;
     .swiper-inner{
       height: 100%;
@@ -134,8 +133,8 @@
       overflow: hidden;
     }
     .swiper-slide {
-      width: 306px;
-      height: 544px;
+      width: 436px;
+      height: 763px;
     }
   }
 </style>

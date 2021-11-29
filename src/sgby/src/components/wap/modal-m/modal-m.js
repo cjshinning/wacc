@@ -40,9 +40,15 @@ class Modal{
         })
     }
     show(){
+        if(!this.modal.scroll){
+            fullpage_api && fullpage_api.setAllowScrolling(false);
+        }
         document.body.appendChild(this.modal.$el);
     }
     hide(){
+        if(!this.modal.scroll){
+            fullpage_api && fullpage_api.setAllowScrolling(true);
+        }
         document.body.removeChild(this.modal.$el);
     }
 }

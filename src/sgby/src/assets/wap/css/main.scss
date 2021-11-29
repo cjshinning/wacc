@@ -4,15 +4,18 @@
 
 body{
     font: 12px/1.5 "Microsoft Yahei",SimSun;
-    background: url('../img/bg.png') repeat top center;
     -webkit-text-size-adjust: 100%;
+    background: #090d10;
+}
+html, body{
+    height: 100%;
 }
 
 .container{
     // max-width: 750px;
     margin: 0 auto;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: hidden;;
     *{
         box-sizing: inherit;
     }
@@ -20,12 +23,61 @@ body{
         text-decoration: none;
     }
 }
+.c-bg{
+    min-height: 100%;
+    background: url('../img/c-bg.jpg') no-repeat top center;
+    background-size: 100% auto;
+}
 
-.banner{
-    position: relative;
-    width: 750px;
-    height: 1200px;
+@keyframes rolling2{
+    0%, 100%{
+        opacity: 1;
+        transform: translateY(10px);
+    }
+    50%{
+        opacity: 0.7;
+        transform: translateY(0px);
+    }
+}
+
+.section1{
+    width: 100%;
+    height: 100%;
+    background: url('../img/bg1.jpg') no-repeat top center; 
     background-size: cover;
+    #video{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width:100vw;
+        height: 100vh;
+    }
+    .kv{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 750px;
+        height: 1624px;
+        a{
+            display: block;
+        }
+    }
+    .top-video{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        video{
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+    }
     .gamesite-tip16{
         display: block;
         position: absolute;
@@ -35,74 +87,36 @@ body{
         height: 102px;
         background: url('../img/gamesite-tip16.png') no-repeat;
     }
-    .kv{
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 750px;
-        height: 1200px;
-        a{
-            display: block;
-        }
-    }
-}
-
-.section1{
-    position: relative;
-    width: 750px;
-    height: 1110px;
-    padding-top: 8px;
-    background: url('../img/bg1.jpg') no-repeat;
-    background-size: cover;
-    .title{
-        width: 656px;
-        height: 161px;
-        @include sprite($title1);
-        margin: 0 48px 0 46px;
-        text-indent: -9999px;
-    }
-    .kv-wrap{
-        position: relative;
-        width: 654px;
-        height: 397px;
-        margin: 20px auto 0;
-        background: url('../img/book.png') no-repeat;
-        background-size: cover;
-        padding: 24px 26px 29px;
-        .paper-clip{
-            position: absolute;
-            left: -13px;
-            top: -6px;
-            width: 90px;
-            height: 70px;
-            @include sprite($paper-clip);
-            z-index: 2;
-        }
-        .civet-cat{
-            position: absolute;
-            left: -48px;
-            top: 242px;
-            width: 190px;
-            height: 185px;
-            @include sprite($civet-cat);
-            z-index: 2;
-        }
-    }
 }
 
 .section2{
-    width: 750px;
-    height: 1190px;
-    padding-top: 64px;
-    background: url('../img/bg2.jpg') no-repeat;
+    width: 100%;
+    height: 100%;
+    background: url('../img/bg2.jpg') no-repeat top center; 
     background-size: cover;
     .title{
-        width: 683px;
-        height: 161px;
-        @include sprite($title2);
-        margin: 0 23px 0 44px;
-        text-indent: -9999px;
+        padding: 131px 0 0 16px;
+        h2{
+            width: 594px;
+            height: 132px;
+            @include sprite($title1);
+            text-indent: -9999px;
+        }
     }
+    .kv-wrap{
+        position: relative;
+        width: 707px;
+        height: 345px;
+        margin: 13px auto 0;
+    }
+    .new-cont{
+        width: 708px;
+        background: rgba(0,0,0,0.3);
+        margin: 4px auto 0;
+        padding-bottom: 20px;
+        overflow: hidden;
+    }
+
     .role-wrap{
         position: relative;
         width: 750px;
@@ -111,49 +125,350 @@ body{
 }
 
 .section3{
-    position: relative;
-    width: 750px;
-    height: 1018px;
-    padding-top: 44px;
-    background: url('../img/bg3.jpg') no-repeat;
+    width: 100%;
+    height: 100%;
+    background: url('../img/bg3.jpg') no-repeat top center; 
     background-size: cover;
     .title{
-        width: 663px;
-        height: 161px;
-        @include sprite($title3);
-        margin: 0 40px 0 47px;
-        text-indent: -9999px;
+        padding: 131px 0 0 16px;
+        h2{
+            width: 733px;
+            height: 132px;
+            @include sprite($title2);
+            text-indent: -9999px;
+        }
+    }
+    .raiders{
+        width: 640px;
+        margin: 15px auto 0;
+        ul{
+            display: flex;
+            flex-flow: wrap;
+        }
+        li{
+            position: relative;
+            width: 320px;
+            height: 277px;
+            overflow: hidden;
+            .pic{
+                display: block;
+            }
+            span{
+                display: block;
+                position: absolute;
+                left: 43px;
+                bottom: 16px;
+                width: 234px;
+                height: 54px;
+                line-height: 54px;
+                background: rgba(0,0,0,0.9);
+                font-size: 24px;
+                font-weight: bold;
+                text-align: center;
+                color: #d7d7d7;
+                i{
+                    display: inline-block;
+                    width: 22px;
+                    height: 22px;
+                    @include sprite($play);
+                    margin-left: 7px;
+                    vertical-align: middle;
+                }
+            }
+            .txt{
+                width: 320px;
+                height: 277px;
+                padding: 23px 20px 26px 44px;
+                background: rgba(0,0,0,0.5);
+                dt{
+                    height: 60px;
+                    line-height: 60px;
+                    font-size: 26px;
+                    font-weight: bold;
+                    color: #dbae79;
+                }
+                dd{
+                    float: left;
+                    width: 128px;
+                    height: 56px;
+                    line-height: 56px;
+                    font-size: 24px;
+                    color: #dbae79;
+                    a{
+                        color: #dbae79;
+                        i{
+                            display: inline-block;
+                            width: 24px;
+                            height: 24px;
+                            @include sprite($more);
+                            margin-left: 18px;
+                            vertical-align: -3px;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-raders{
+            display: block;
+            width: 640px;
+            height: 77px;
+            margin-top: 14px;
+            @include sprite($btn-raders);
+        }
     }
 }
 
 .section4{
-    position: relative;
-    width: 750px;
-    height: 1074px;
-    padding-top: 54px;
-    background: url('../img/bg4.jpg') no-repeat;
+    width: 100%;
+    height: 100%;
+    background: url('../img/bg4.jpg') no-repeat top center; 
     background-size: cover;
     .title{
-        width: 682px;
-        height: 161px;
-        @include sprite($title4);
-        margin: 0 23px 0 45px;
-        text-indent: -9999px;
+        padding: 131px 0 0 16px;
+        h2{
+            width: 671px;
+            height: 132px;
+            @include sprite($title3);
+            text-indent: -9999px;
+        }
+    }
+    .role-container{
+        width: 704px;
+        margin: 12px auto 0;
+    }
+    .role-tab{
+        display: flex;
+        justify-content: space-around;
+        a{
+            display: block;
+            width: 350px;
+            height: 83px;
+            text-indent: -9999px;
+            &:nth-child(1){
+                @include sprite($role-tab-1);
+            }
+            &:nth-child(2){
+                @include sprite($role-tab-2);
+            }
+            &.active{
+                &:nth-child(1){
+                    @include sprite($role-tab-1-h);
+                }
+                &:nth-child(2){
+                    @include sprite($role-tab-2-h);
+                }
+            }
+        }
+    }
+    .role-pannel{
+        margin: 10px auto 0;
+        width: 704px;
+        height: 840px;
+        overflow: hidden;
+        .pannel{
+            width: 704px;
+            height: 840px;
+        }
+        .military-tab{
+            display: flex;
+            a{
+                position: relative;
+                display: block;
+                flex: 1;
+                height: 48px;
+                line-height: 48px;
+                text-align: center;
+                font-size: 28px;
+                // color: #f0f0f0;
+                background-image: linear-gradient(to bottom, #d5d5d5, #8e8e8e);
+                -webkit-background-clip: text;
+                color: transparent;
+                &.active{
+                    // color: #ded396;
+                    background-image: linear-gradient(to bottom, #cdb278, #ffe29b);
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    &:before{
+                        display: block;
+                    }
+                }
+                &:before{
+                    display: none;
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 110px;
+                    height: 24px;
+                    @include sprite($role-cur);
+                }
+            }
+        }
+        .military-pan{
+            margin: 20px auto 0;
+            width: 704px;
+            height: 720px;
+            overflow: hidden;
+            .pan{
+                width: 704px;
+                height: 720px;
+                // overflow-x: hidden;
+                // overflow-y: scroll;
+                ul{
+                    display: flex;
+                    flex-flow: wrap;
+                    margin-right: -20px;
+                }
+                li{
+                    width: 165px;
+                    margin: 10px 15px 0 0;
+                    .pic{
+                        width: 165px;
+                        height: 134px;
+                    }
+                    .txt{
+                        height: 36px;
+                        line-height: 36px;
+                        text-align: center;
+                        font-size: 26px;
+                        color: #dbae79;
+                    }
+                }
+            }
+        }
     }
 }
 
 .section5{
     width: 100%;
-    height: 112px;
-    padding-top: 16px;
-    background: url('../img/bg5.png') no-repeat top center;
+    height: 100%;
+    background: url('../img/bg5.jpg') no-repeat top center; 
+    background-size: cover;
+    .title{
+        padding: 131px 0 0 16px;
+        h2{
+            width: 632px;
+            height: 132px;
+            @include sprite($title4);
+            text-indent: -9999px;
+        }
+    }
+    .feature-container{
+        width: 704px;
+        margin: 12px auto 0;
+    }
+    .feature-tab{
+        display: flex;
+        justify-content: space-around;
+        a{
+            display: block;
+            width: 350px;
+            height: 83px;
+            text-indent: -9999px;
+            &:nth-child(1){
+                @include sprite($feature-tab-1);
+            }
+            &:nth-child(2){
+                @include sprite($feature-tab-2);
+            }
+            &.active{
+                &:nth-child(1){
+                    @include sprite($feature-tab-1-h);
+                }
+                &:nth-child(2){
+                    @include sprite($feature-tab-2-h);
+                }
+            }
+        }
+    }
+    .feature-pannel{
+        margin: 50px auto 0;
+        width: 650px;
+        height: 763px;
+        overflow: hidden;
+        .pannel{
+            width: 650px;
+            height: 763px;
+        }
+    }
+}
+
+
+.section6{
+    width: 100%;
+    height: 100%;
+    background: url('../img/bg6.jpg') no-repeat top center; 
+    background-size: cover;
+    .title{
+        padding: 131px 0 0 16px;
+        h2{
+            width: 700px;
+            height: 132px;
+            @include sprite($title5);
+            text-indent: -9999px;
+        }
+    }
+    .qrs{
+        width: 600px;
+        margin: 80px auto 0;
+        ul{
+            display: flex;
+            flex-flow: wrap;
+        }
+        li{
+            width: 252px;
+            margin: 0 24px;
+            .pic{
+                width: 252px;
+                height: 255px;
+                padding: 26px 24px 25px;
+                @include sprite($qr-bg);
+            }
+            .txt{
+                height: 44px;
+                line-height: 44px;
+                text-align: center;
+                font-size: 20px;
+                color: #cfa972;
+            }
+        }
+    }
+    .copy-right{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding: 25px;
+        background: #000;
+        p{
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            color: #888888;
+        }
+    }
+}
+
+.arrow{
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -32px;
+    bottom: 30px;
+    width: 64px;
+    height: 86px;
+    @include sprite($arrow);
+    animation: rolling2 ease-in-out 1s infinite;
 }
 
 .article{
+    background: url('../img/bg6.jpg') no-repeat top center; 
+    background-size: cover;
     .main{
         width: 708px;
         margin: 125px auto 30px;
-        background: #fff;
+        background: rgba(0,0,0,0.25);
         overflow: hidden;
     }
     .article-content{
@@ -163,7 +478,7 @@ body{
             line-height: 44px;
             text-align: center;
             font-size: 36px;
-            color: #5390f4;
+            color: #eabc85;
         }
         .detail{
             margin-top: 10px;
@@ -184,7 +499,7 @@ body{
             p{
                 line-height: 40px;
                 font-size: 24px;
-                color: #1a0e11;
+                color: #929191;
             }
             img{
                 max-width: 100%;
@@ -201,10 +516,6 @@ body{
 }
 
 // 关注我们弹窗
-.public-code{
-    width: 225px;
-    height: 225px;
-    border: 5px solid #b19f8e;
-    background: #fff;
-    margin: 0 auto;
+.qr-code{
+    
 }

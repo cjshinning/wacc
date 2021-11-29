@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container c-bg">
         <div class="article">
             <nav-article-m :title="cateMap[cate]"></nav-article-m>
             <section class="main">
@@ -20,7 +20,7 @@ import {jsonp} from 'axios-jsonp-pro';
 import apiUrl from '../../../assets/wap/js/apiUrl.js';
 import util from '../../../assets/pc/js/util.js';
 
-// import NavArticleM from '../../../components/wap/nav-article-m/nav-article-m';
+import NavArticleM from '../../../components/wap/nav-article-m/nav-article-m';
 
 export default {
     data(){

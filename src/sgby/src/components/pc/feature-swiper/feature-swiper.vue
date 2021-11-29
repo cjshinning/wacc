@@ -2,11 +2,11 @@
   <div class="feature-wrap">
     <swiper class="swiper" :options="swiperOption" ref="FeatureSwiper" v-if="showSwiper">
       <!-- <div class="swiper-inner"> -->
-        <swiper-slide v-for="(item,index) in feature.imgs" :key="index"><img :data-src="item" class="swiper-lazy" width="100%" alt=""></swiper-slide>
+        <swiper-slide v-for="(item,index) in config.imgs" :key="index"><img :data-src="item" class="swiper-lazy" width="100%" alt=""></swiper-slide>
       <!-- </div> -->
       <div class="swiper-pagination" slot="pagination"></div>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
+      <!-- <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div> -->
     </swiper>
   </div>
 </template>
@@ -17,7 +17,7 @@
 
   export default {
     name: 'FeatureSwiper',
-    props:["feature"],
+    props:["config"],
     components: {
       swiper,
       swiperSlide
@@ -27,7 +27,7 @@
         return this.$refs.FeatureSwiper.swiper
       },
       showSwiper(){
-        return this.feature.imgs.length;
+        return this.config.imgs.length;
       }
     },
     data() {
@@ -45,22 +45,23 @@
             el: '.swiper-pagination',
             clickable: true
           },
-          autoplay: {
-            delay: 5000,
-            stopOnLastSlide: false,
-            disableOnInteraction: false,
-          },
+          autoplay: false,
+          // autoplay: {
+          //   delay: 5000,
+          //   stopOnLastSlide: false,
+          //   disableOnInteraction: false,
+          // },
           coverflowEffect: {
             rotate: 0,
-            stretch: 70,
-            depth: 35,
+            stretch: 54,
+            depth: 20,
             modifier: 10,
             slideShadows : true
           },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-          }
+          // navigation: {
+          //   nextEl: '.swiper-button-next',
+          //   prevEl: '.swiper-button-prev'
+          // }
         }
       }
     },
@@ -72,61 +73,61 @@
 <style lang="scss" scoped>
   @import './css/sprite.scss';
   .feature-wrap {
-    position: absolute;
-    left: 0;
-    top: 322px;
+    // position: absolute;
+    // left: 0;
+    // top: 222px;
     width: 1200px;
-    height: 640px;
+    height: 516px;
     overflow: hidden;
 
-    /deep/ .swiper-button-prev{
-      width: 34px;
-      height: 55px;
-      left: 438px;
-      top: 594px;
-      opacity: 1;
-      text-indent: -9999px;
-      // background: url('./img/btn-prev.png');
-      @include sprite($btn-prev);
-      &:after{
-        content: '';
-      }
-    }
-    /deep/ .swiper-button-next{
-      width: 34px;
-      height: 55px;
-      right: 438px;
-      top: 594px;
-      opacity: 1;
-      text-indent: -9999px;
-      // background: url('./img/btn-next.png');
-      @include sprite($btn-next);
-      &:after{
-        content: '';
-      }
-    }
+    // /deep/ .swiper-button-prev{
+    //   width: 34px;
+    //   height: 55px;
+    //   left: 438px;
+    //   top: 594px;
+    //   opacity: 1;
+    //   text-indent: -9999px;
+    //   // background: url('./img/btn-prev.png');
+    //   @include sprite($btn-prev);
+    //   &:after{
+    //     content: '';
+    //   }
+    // }
+    // /deep/ .swiper-button-next{
+    //   width: 34px;
+    //   height: 55px;
+    //   right: 438px;
+    //   top: 594px;
+    //   opacity: 1;
+    //   text-indent: -9999px;
+    //   // background: url('./img/btn-next.png');
+    //   @include sprite($btn-next);
+    //   &:after{
+    //     content: '';
+    //   }
+    // }
     /deep/ .swiper-pagination-bullets{
       left: 50%;
-      margin-left: -112.5px;
-      top: 594px;
-      width: 225px;
-      height: 15px;
+      margin-left: -127.5px;
+      top: 490px;
+      width: 255px;
+      height: 25px;
     }
     /deep/ .swiper-pagination-bullet{
-      width: 15px;
-      height: 15px;
-      margin: 0 15px;
-      background: #818181;
+      width: 25px;
+      height: 25px;
+      margin: 0 13px;
+      background: url('./img/btn-bullet.png') no-repeat;
       opacity: 1;
     }
     /deep/ .swiper-pagination-bullet-active{
-      background: #3c82fc;
+      background: url('./img/btn-bullet-h.png') no-repeat;
     }
   }
   
   .swiper {
     width: 1200px;
-    height: 559px;
+    height: 473px;
     overflow: visible;
     .swiper-inner{
       height: 100%;
@@ -134,8 +135,8 @@
       overflow: hidden;
     }
     .swiper-slide {
-      width: 983px;
-      height: 559px;
+      width: 826px;
+      height: 473px;
     }
   }
 </style>

@@ -10,8 +10,8 @@
             </div>
         </div>
         <div class="right">
-            <a href="javascript:;" class="btn-subscribe" @click.prevent="showPublic">关注我们</a>
-            <a :href="config.reserveLink" class="btn-reserve">{{config.reserveText}}</a>
+            <a href="javascript:;" class="btn-subscribe" @click.prevent="showPublic"></a>
+            <a href="javascript:;" class="btn-nav" @click="showMenu"></a>
         </div>
     </header>
 </template>
@@ -21,20 +21,26 @@ export default {
     methods: {
         showPublic(){
             let content = `
-                <div class="public-code">
-                    <img src="${this.config.publicSrc}" width="100%"/>
+                <div class="qr-code">
+                    <img src="${this.config.publicSrc}" width="225"/>
+                    <p>扫一扫关注公众号</p>
                 </div>
             `;
             this.$modal({
-                width: 508,
-                title: '公众号',
+                width: 460,
+                title: '关注公众号',
                 content
             })
+        },
+        showMenu(){
+            this.$store.commit('toggleMenu');
+            fullpage_api && fullpage_api.setAllowScrolling(false);
         }
     }
 }
 </script>
 <style lang="scss" scoped>
+@import './css/sprite.scss';
 @import '../../../assets/wap/css/mixin.scss';
 .nav-head{
     display: flex;
@@ -45,51 +51,49 @@ export default {
     top: 0;
     width: 750px;
     height: 95px;
-    padding: 0 10px 0 136px;
-    background: rgba(255,255,255,0.9);
+    padding: 0 10px 0 158px;
+    background: rgba(21,22,24,0.9);
     z-index: 999;
     .left{
         display: flex;
         .icon{
             position: absolute;
-            left: 7px;
-            top: 9px;
-            width: 114px;
-            height: 114px;
+            left: 19px;
+            top: 10px;
+            width: 128px;
+            height: 128px;
         }
         .info{
             h2{
                 height: 40px;
                 line-height: 40px;
                 font-size: 32px;
-                color: #141414;
+                color: #fff;
             }
             p{
                 height: 32px;
                 line-height: 32px;
                 font-size: 24px;
-                color: #626161;
+                color: #fff;
             }
         }
     }
     .right{
         display: flex;
-        a{
+        align-items: center;
+        .btn-subscribe{
             display: block;
-            width: 149px;
-            height: 63px;
-            line-height: 63px;
-            margin-right: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 22px;
-            color: #f5f5f5;
-            &.btn-subscribe{
-                background: #cc5e36;
-            }
-            &.btn-reserve{
-                background: #3970c6;
-            }
+            width: 171px;
+            height: 71px;
+            margin-right: 6px;
+            @include sprite($btn-subscribe);
+        }
+        .btn-nav{
+            display: block;
+            width: 62px;
+            height: 43px;
+            margin-right: 6px;
+            @include sprite($btn-nav);
         }
     }
 }

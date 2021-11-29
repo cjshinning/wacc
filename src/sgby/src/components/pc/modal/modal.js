@@ -5,8 +5,8 @@ import Vue from 'vue';
 import modalComponent from './modal.vue';
 const modalConstructor = Vue.extend(modalComponent);
 
-class Modal{
-    constructor(obj){
+class Modal {
+    constructor(obj) {
         // debugger;
         let that = this;
         const defaultObj = {
@@ -15,9 +15,10 @@ class Modal{
             className: '',
             title: '温馨提示',
             content: '',
-            buttons:[{
+            scroll: true,
+            buttons: [{
                 text: '确定',
-                callback(){
+                callback() {
                     that.hide();
                 }
             }]
@@ -25,16 +26,16 @@ class Modal{
         const paramObj = Object.assign(defaultObj, obj);
         this.modal = new modalConstructor({
             el: document.createElement('div'),
-            data(){
+            data() {
                 return paramObj;
             },
             methods: {
-                closeCb(){
+                closeCb() {
                     that.hide();
                 }
             },
             computed: {
-                buttonCb(){
+                buttonCb() {
                     return this.buttons.map(button => {
                         return button.callback && button.callback.bind(that);
                     })
@@ -42,20 +43,26 @@ class Modal{
             }
         })
     }
-    show(){
+    show() {
+        if (!this.modal.scroll) {
+            fullpage_api && fullpage_api.setAllowScrolling(false);
+        }
         document.body.appendChild(this.modal.$el);
     }
-    hide(){
+    hide() {
+        if (!this.modal.scroll) {
+            fullpage_api && fullpage_api.setAllowScrolling(true);
+        }
         document.body.removeChild(this.modal.$el);
     }
 }
 
-function $modal(obj = {}){
+function $modal(obj = {}) {
     new Modal(obj).show();
 }
 
 export default {
-    install(){
+    install() {
         Vue.prototype.$modal = $modal;
     }
 };

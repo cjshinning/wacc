@@ -23,9 +23,11 @@ class VideoPlay{
         })
     }
     show(){
+        fullpage_api && fullpage_api.setAllowScrolling(false);
         document.body.appendChild(this.video.$el);
     }
     hide(){
+        fullpage_api && fullpage_api.setAllowScrolling(true);
         document.body.removeChild(this.video.$el);
     }
 }

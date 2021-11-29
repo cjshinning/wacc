@@ -43,45 +43,43 @@ export default {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    // width: 628px;
 }
 .modal-header{
     position: relative;
     width: 100%;
-    height: 117px;
+    height: 62px;
     @include sprite($modal-header);
     .modal-title{
-        padding: 71px 93px 0;
-        line-height: 36px;
+        padding: 6px 100px 0;
+        line-height: 56px;
         text-align: center;
-        font-size: 30px;
-        font-weight: bold;
-        color: #fff;
+        font-size: 24px;
+        color: #d0a96c;
     }
     .modal-close{
         display: block;
         position: absolute;
-        right: 22px;
-        top: 21px;
-        width: 55px;
-        height: 55px;
+        right: 24px;
+        top: 19px;
+        width: 32px;
+        height: 32px;
         @include sprite($modal-close);
         &:hover{
-            @include sprite($modal-close-hover);
+            // @include sprite($modal-close-hover);
         }
     }
 }
 .modal-body{
     position: relative;
-    width: 508px;
+    width: 460px;
     background: url('./img/modal-body.png') top center repeat-y;
     background-size: 100% auto;
-    padding: 12px 60px;
+    padding: 12px 45px;
     margin: -2px 0;
     font-size: 18px;
     text-align: center;
-    line-height: 36px;
-    color: #594f48;
+    line-height: 28px;
+    color: #8c8c8c;
     // &::before{
     //     content: '';
     //     display: block;
@@ -112,15 +110,15 @@ export default {
     text-align: center;
     a{
         display: inline-block;
-        width: 255px;
-        height: 73px;
+        width: 186px;
+        height: 50px;
         margin: 10px;
         @include sprite($modal-btn);
         text-decoration: none;
-        font-size: 30px;
+        font-size: 24px;
         text-align: center;
-        line-height: 73px;
-        color: #fff;
+        line-height: 46px;
+        color: #fff8ae;
     }
 }
 </style>

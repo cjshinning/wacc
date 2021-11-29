@@ -1,11 +1,12 @@
 
 const mixin = {
     methods: {
-        showWaiting(link){
+        showWaiting(link, scroll){
             if(!link){
                 this.$modal({
-                    width: 508,
-                    height: 200,
+                    width: 360,
+                    height: 100,
+                    scroll,
                     content: '敬请期待'
                 });
             }else{

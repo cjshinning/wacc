@@ -2,27 +2,41 @@
     <div class="top-nav-normal">
         <div class="inner">
             <ul>
-                <li class="nav-1">
-                    <a href="//www.37.com/sgby/" target="_blank"><i>HOME</i><span>官网首页</span></a>
-                </li>
-                <li class="nav-2">
-                    <a href="//www.37.com/sgby/list.html?cate=xinwen&page=1" target="_blank"><i>NEWS</i><span>资讯中心</span></a>
-                </li>
-                <li class="nav-3">
-                    <a href="//www.37.com/sgby/list.html?cate=gonglue&page=1" target="_blank"><i>GUIDE</i><span>游戏攻略</span></a>
-                </li>
-                <li class="nav-4">
-                    <a href="//kf.37.com/" target="_blank"><i>SERVICE</i><span>客服中心</span></a>
+                <li v-for="(item,index) in topNavConfig">
+                    <a :href="item.link" target="_blank"><i>{{item.sub}}</i><span>{{item.title}}</span></a>
                 </li>
             </ul>
         </div>
-        <a href="//www.37.com/sgby/" target="_blank" class="logo"></a>
+        <a :href="indexLink" target="_blank" class="logo"></a>
     </div>
 </template>
 <script>
 export default {
     data(){
         return {
+            indexLink: './',
+            topNavConfig: [
+                {
+                    title: '官网首页',
+                    sub: 'HOME',
+                    link: './'
+                },
+                {
+                    title: '资讯中心',
+                    sub: 'NEWS',
+                    link: './list.html?cate=xinwen&page=1'
+                },
+                {
+                    title: '游戏攻略',
+                    sub: 'GUIDE',
+                    link: './list.html?cate=gonglue&page=1'
+                },
+                {
+                    title: '客服中心',
+                    sub: 'SERVICE',
+                    link: '//kf.37.com/'
+                }
+            ]
         }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container c-bg">
         <div class="article">
             <nav-article-m title="资讯公告"></nav-article-m>
             <section class="main">
@@ -13,8 +13,8 @@ import '../../../assets/wap/css/main.scss';
 import {jsonp} from 'axios-jsonp-pro';
 import apiUrl from '../../../assets/wap/js/apiUrl.js';
 
-// import NavArticleM from '../../../components/wap/nav-article-m/nav-article-m';
-// import ListSwiperM from '../../../components/wap/list-swiper-m/list-swiper-m';
+import NavArticleM from '../../../components/wap/nav-article-m/nav-article-m';
+import ListSwiperM from '../../../components/wap/list-swiper-m/list-swiper-m';
 
 export default {
     data(){

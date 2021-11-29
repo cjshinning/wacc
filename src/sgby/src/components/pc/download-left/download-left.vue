@@ -1,39 +1,57 @@
 <template>
     <div class="download-left">
-        <a href="javascript:;" class="logo"></a>
-        <div class="line-1"></div>
-        <div class="tit tit1">
-            <p>扫一扫下载游戏</p>
-        </div>
-        <div class="qrcode qrcode1">
-            <div class="code-line"></div>
-            <img v-lazy="download.qrcodeDownload" alt="">
-        </div>
-        <a href="javascript:;" class="btn-ios" @click="showWaiting(download.appLink)">ios下载</a>
-        <a href="javascript:;" class="btn-android" @click="showWaiting(download.androidLink)">安卓下载</a>
-        <a href="javascript:;" class="btn-desk" @click="showWaiting(download.deskLink)"></a>
-        <div class="line-2"></div>
-        <div class="tit tit2">
-            <p>关注微信公众号</p>
-        </div>
-        <div class="qrcode qrcode2">
-            <div class="code-line"></div>
-            <img v-lazy="download.qrcodeOfficial" alt="">
-        </div>
-        <div class="qr">
-            <a href="javascript:;" class="qr-douyin"></a>
-            <a href="javascript:;" class="qr-kuaishou"></a>
-            <a href="javascript:;" class="qr-weibo"></a>
+        <div class="download-inner">
+            <a href="javascript:;" class="logo"></a>
+            <div class="line-1"></div>
+            <div class="tit tit1">
+                <p>扫一扫下载游戏</p>
+            </div>
+            <div class="qrcode qrcode1">
+                <div class="code-line"></div>
+                <img v-lazy="config.qrcodeDownload" alt="">
+            </div>
+            <a href="javascript:;" class="btn-ios" @click="showWaiting(config.appLink, false)">ios下载</a>
+            <a href="javascript:;" class="btn-android" @click="showWaiting(config.androidLink, false)">安卓下载</a>
+            <a href="javascript:;" class="btn-desk" @click="showWaiting(config.deskLink, false)"></a>
+            <div class="line-2"></div>
+            <div class="tit tit2">
+                <p>关注微信公众号</p>
+            </div>
+            <div class="qrcode qrcode2">
+                <div class="code-line"></div>
+                <img v-lazy="config.qrcodeOfficial" alt="">
+            </div>
+            <div class="qr">
+                <a href="javascript:;" class="qr-douyin" @click="showQr('抖音', config.qrcodeDouyin)"></a>
+                <a href="javascript:;" class="qr-kuaishou" @click="showQr('快手', config.qrcodeKuaishou)"></a>
+                <a href="javascript:;" class="qr-weibo" @click="showQr('微博', config.qrcodeWeibo)"></a>
+            </div>
         </div>
     </div>
 </template>
 <script>
 import mixin from '../../../assets/pc/js/mixin.js';
 export default {
-    props: ['download'],
+    props: ['config'],
     mixins: [mixin],
     data(){
         return {
+        }
+    },
+    methods: {
+        showQr(title, src){
+            let content = `
+                <div class="qr-code">
+                    <img src="${src}" width="134"/>
+                    <p>扫一扫关注${title}官方帐号</p>
+                </div>
+            `;
+            this.$modal({
+                width: 360,
+                title: `关注${title}`,
+                scroll: false,
+                content
+            })
         }
     }
 }
@@ -65,6 +83,13 @@ export default {
         width: 202px;
         height: 100%;
         background: url('./img/sider-bg.png') center repeat-y;
+        .download-inner{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
         .logo{
             @include center;
             margin-top: -435px;
@@ -199,28 +224,44 @@ export default {
 
     @media (max-width: 1550px) {
         .download-left{
-            transform: scale(0.83);
+            transform: scaleX(0.83);
+            transform-origin: left;
+        }
+        .download-inner{
+            transform: scaleY(0.83);
             transform-origin: left;
         }
     }
 
     @media (max-width: 1500px) {
         .download-left{
-            transform: scale(0.83);
+            transform: scaleX(0.83);
+            transform-origin: left;
+        }
+        .download-inner{
+            transform: scaleY(0.83);
             transform-origin: left;
         }
     }
 
     @media (max-width: 1440px) {
         .download-left{
-            transform: scale(0.8);
+            transform: scaleX(0.83);
+            transform-origin: left;
+        }
+        .download-inner{
+            transform: scaleY(0.8);
             transform-origin: left;
         }
     }
 
     @media (max-width: 1280px) {
         .download-left{
-            transform: scale(0.72);
+            transform: scaleX(0.72);
+            transform-origin: left;
+        }
+        .download-inner{
+            transform: scaleY(0.72);
             transform-origin: left;
         }
     }

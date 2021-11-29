@@ -21,13 +21,13 @@ export default {
     width: 750px;
     height: 95px;
     padding: 0 32px;
-    background: #fff;
+    background: #171819;
     z-index: 999;
     h3{
         position: relative;
         padding-left: 38px;
         font-size: 30px;
-        color: #141414;
+        color: #eabc85;
         &::before{
             display: block;
             content: '';
@@ -42,7 +42,7 @@ export default {
         position: relative;
         padding-left: 48px;
         font-size: 24px;
-        color: #1a0e11;
+        color: #eabc85;
         &::before{
             display: block;
             content: '';

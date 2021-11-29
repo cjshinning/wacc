@@ -1,7 +1,7 @@
 <template>
     <swiper class="swiper" ref="kvwiper" :options="swiperOptions" v-if="showSwiper">
-        <swiper-slide v-for="(item,index) in kv.imgs" :key="index">
-            <a v-if="kv.links[index] && topImg.links!=='javascript:;'" :href="kv.links[index]">
+        <swiper-slide v-for="(item,index) in config.imgs" :key="index">
+            <a v-if="config.links[index] && config.links!=='javascript:;'" :href="config.links[index]">
                 <img v-lazy="item" width="100%" alt="">
             </a>
             <a v-else href="javascript:;">
@@ -16,7 +16,7 @@
     import 'swiper/swiper-bundle.css';
     export default {
         name: 'kvSwiper',
-        props: ['kv'],
+        props: ['config'],
         data() {
             return {
                 swiperOptions: {
@@ -38,7 +38,7 @@
         },
         computed: {
             showSwiper(){
-                return this.kv.imgs;
+                return this.config.imgs;
             },
         },
         mounted() {
@@ -49,13 +49,12 @@
     @import './css/sprite.scss';
     @import '../../../assets/wap/css/mixin.scss';
     .swiper-container{
-        width: 602px;
-        height: 344px;
-        border-radius: 25px;
+        width: 707px;
+        height: 345px;
         overflow: hidden;
         .swiper-slide{
-            width: 602px;
-            height: 344px;
+            width: 707px;
+            height: 345px;
             a{
                 display: block;
             }
@@ -68,17 +67,15 @@
             text-align: right;
         }
         /deep/ .swiper-pagination-bullet{
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             border-radius: 0;
-            // background: url('./img/kv-bullet.png') no-repeat;
             background: none;
             @include sprite($kv-bullet);
-            margin: 0 5px;
+            margin: 0 7px;
             opacity: 1;
         }
         /deep/ .swiper-pagination-bullet-active{
-            // background: url('./img/kv-bullet-h.png') no-repeat;
             background: none;
             @include sprite($kv-bullet-h);
         }

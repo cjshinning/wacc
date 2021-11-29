@@ -133,6 +133,15 @@ module.exports = {
                 }
             },
             {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac|ts)(\?.*)?$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: 'medias/[name]-[hash:5].[ext]'
+                    }
+                }
+            },
+            {
                 test: /\.vue$/i,
                 use: {
                     loader: 'vue-loader'

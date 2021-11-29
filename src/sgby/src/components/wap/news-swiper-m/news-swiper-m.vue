@@ -35,7 +35,7 @@
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-    <a href="./list.html" class="news-more">更多+</a>
+    <a href="./list.html" class="news-more"></a>
   </div>
 </template>
 
@@ -98,23 +98,20 @@
   }
 </script>
 <style lang="scss" scoped>
+  @import './css/sprite.scss';
   @import '../../../assets/wap/css/mixin.scss';
   .news-wrap{
     position: relative;
-    margin: 104px auto 0;
-    width: 654px;
-    height: 420px;
+    margin: 84px auto 0;
+    width: 708px;
+    height: 272px;
     .news-more{
       position: absolute;
       right: 0;
-      bottom: 428px;
-      width: 120px;
+      bottom: 296px;
+      width: 48px;
       height: 48px;
-      line-height: 48px;
-      text-align: center;
-      text-decoration: none;
-      font-size: 22px;
-      color: #676767;
+      @include sprite($news-more);
       z-index: 2;
       &:hover{
         color: #4085fa;
@@ -122,52 +119,47 @@
     }
   }
   .swiper-container{
-    width: 654px;
-    height: 420px;
+    width: 708px;
+    height: 272px;
     overflow: visible;
     .swiper-wrapper{
       overflow: hidden;
     }
     .swiper-slide{
-      width: 654px;
-      height: 420px;
+    width: 708px;
+    height: 272px;
     }
   }
   .swiper{
     li{
-      height: 83px;
-      line-height: 83px;
-      border-bottom: 1px dashed #676767;
+      height: 68px;
+      line-height: 68px;
+      padding: 0 14px 0 24px;
       overflow: hidden;
-      font-size: 24px;
-      color: #676767;
-      &:last-child{
-        border-bottom: 0px;
-      }
+      font-size: 22px;
+      color: #afafaf;
       span{
         float: right;
+        color: #747474;
       }
       a{
-        color: #676767;
+        color: #afafaf;
         text-decoration: none;
-        &:hover{
-          color: #3272f8;
-        }
       }
     }
     /deep/ .swiper-pagination-bullets{
-      width: 654px;
-      height: 48px;
-      border-bottom: 1px solid #4085fa;
+      width: 708px;
+      height: 68px;
+      border-bottom: 1px solid #a89371;
       left: 50%;
-      bottom: 428px;
+      bottom: 285px;
       transform: translateX(-50%);
       text-align: left;
     }
     /deep/ .swiper-pagination-bullet-custom {
       width: 132px;
-      height: 48px;
-      line-height: 48px;
+      height: 68px;
+      line-height: 68px;
       margin: 0;
       border-radius: 0;
       opacity: 1;
@@ -181,10 +173,9 @@
       }
       &.swiper-pagination-bullet-active {
         opacity: 1;
-        width: 110px;
-        height: 48px;
+        height: 68px;
         margin: 0 0px;
-        background: #4085fa;
+        @include sprite($news-cur);
         color: #fff;
       }
     }

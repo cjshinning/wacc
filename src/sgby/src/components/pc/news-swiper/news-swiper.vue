@@ -3,7 +3,7 @@
     <swiper class="swiper" ref="newsSwiper" :options="swiperOptions" @slideChange="slideChange">
       <swiper-slide>
         <ul>
-          <li v-for="(item,index) in news.zonghe" :key="index">
+          <li v-for="(item,index) in config.zonghe" :key="index">
             <span>{{item.PUB_TIME}}</span>
             <a :href="articleLink(item.ID)" target="_blank">{{item.TITLE}}</a>
           </li>
@@ -11,7 +11,7 @@
       </swiper-slide>
       <swiper-slide>
         <ul>
-          <li v-for="(item,index) in news.xinwen" :key="index">
+          <li v-for="(item,index) in config.xinwen" :key="index">
             <span>{{item.PUB_TIME}}</span>
             <a :href="articleLink(item.ID)" target="_blank">{{item.TITLE}}</a>
           </li>
@@ -19,7 +19,7 @@
       </swiper-slide>
       <swiper-slide>
         <ul>
-          <li v-for="(item,index) in news.huodong" :key="index">
+          <li v-for="(item,index) in config.huodong" :key="index">
             <span>{{item.PUB_TIME}}</span>
             <a :href="articleLink(item.ID)" target="_blank">{{item.TITLE}}</a>
           </li>
@@ -27,7 +27,7 @@
       </swiper-slide>
       <swiper-slide>
         <ul>
-          <li v-for="(item,index) in news.gonglue" :key="index">
+          <li v-for="(item,index) in config.gonglue" :key="index">
             <span>{{item.PUB_TIME}}</span>
             <a :href="articleLink(item.ID)" target="_blank">{{item.TITLE}}</a>
           </li>
@@ -35,7 +35,7 @@
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-    <a :href="listLink" target="_blank" class="news-more">更多+</a>
+    <a :href="listLink" target="_blank" class="news-more">+</a>
   </div>
 </template>
 
@@ -44,7 +44,7 @@
   import 'swiper/swiper-bundle.css';
   export default {
     name: 'newsSwiper',
-    props: ['news'],
+    props: ['config'],
     data() {
       return {
         cate: 'xinwen',
@@ -110,19 +110,21 @@
     padding: 18px 20px 26px 32px;
     background: rgba(0,0,0,0.3);
     .news-more{
+      display: block;
       position: absolute;
-      right: 0;
-      bottom: 416px;
-      width: 110px;
-      height: 40px;
-      line-height: 40px;
+      right: 20px;
+      bottom: 338px;
+      width: 16px;
+      height: 16px;
+      line-height: 16px;
+      border: 1px solid #a8a8a8;
       text-align: center;
       text-decoration: none;
-      font-size: 22px;
-      color: #676767;
+      font-size: 16px;
+      color: #a8a8a8;
       z-index: 2;
       &:hover{
-        color: #4085fa;
+        color: #a8a8a8;
       }
     }
   }
@@ -166,7 +168,7 @@
       border-bottom: 1px solid #a89371;
       background: rgba(0,0,0,.25);
       left: 50%;
-      bottom: 308px;
+      bottom: 297px;
       transform: translateX(-50%);
       text-align: left;
     }
@@ -190,7 +192,7 @@
         width: 108px;
         height: 50px;
         margin: 0 0px;
-        background: #4085fa;
+        background: url('./img/news_cur.png') no-repeat;
         color: #eabc85;
       }
     }

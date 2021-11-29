@@ -4,7 +4,7 @@ const mixin = {
         showWaiting(link){
             if(!link){
                 this.$modal({
-                    width: 508,
+                    width: 460,
                     height: 200,
                     content: '敬请期待'
                 });

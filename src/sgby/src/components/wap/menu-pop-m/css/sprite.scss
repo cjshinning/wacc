@@ -1,0 +1,156 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$btn-close-name: 'btn-close';
+$btn-close-x: 0px;
+$btn-close-y: 258px;
+$btn-close-offset-x: 0px;
+$btn-close-offset-y: -258px;
+$btn-close-width: 114px;
+$btn-close-height: 114px;
+$btn-close-total-width: 382px;
+$btn-close-total-height: 372px;
+$btn-close-image: './img/sprite_menu_pop_m.png';
+$btn-close: (0px, 258px, 0px, -258px, 114px, 114px, 382px, 372px, './img/sprite_menu_pop_m.png', 'btn-close', );
+$menu-1-name: 'menu-1';
+$menu-1-x: 0px;
+$menu-1-y: 0px;
+$menu-1-offset-x: 0px;
+$menu-1-offset-y: 0px;
+$menu-1-width: 186px;
+$menu-1-height: 76px;
+$menu-1-total-width: 382px;
+$menu-1-total-height: 372px;
+$menu-1-image: './img/sprite_menu_pop_m.png';
+$menu-1: (0px, 0px, 0px, 0px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-1', );
+$menu-2-name: 'menu-2';
+$menu-2-x: 0px;
+$menu-2-y: 86px;
+$menu-2-offset-x: 0px;
+$menu-2-offset-y: -86px;
+$menu-2-width: 186px;
+$menu-2-height: 76px;
+$menu-2-total-width: 382px;
+$menu-2-total-height: 372px;
+$menu-2-image: './img/sprite_menu_pop_m.png';
+$menu-2: (0px, 86px, 0px, -86px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-2', );
+$menu-3-name: 'menu-3';
+$menu-3-x: 196px;
+$menu-3-y: 0px;
+$menu-3-offset-x: -196px;
+$menu-3-offset-y: 0px;
+$menu-3-width: 186px;
+$menu-3-height: 76px;
+$menu-3-total-width: 382px;
+$menu-3-total-height: 372px;
+$menu-3-image: './img/sprite_menu_pop_m.png';
+$menu-3: (196px, 0px, -196px, 0px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-3', );
+$menu-4-name: 'menu-4';
+$menu-4-x: 196px;
+$menu-4-y: 86px;
+$menu-4-offset-x: -196px;
+$menu-4-offset-y: -86px;
+$menu-4-width: 186px;
+$menu-4-height: 76px;
+$menu-4-total-width: 382px;
+$menu-4-total-height: 372px;
+$menu-4-image: './img/sprite_menu_pop_m.png';
+$menu-4: (196px, 86px, -196px, -86px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-4', );
+$menu-5-name: 'menu-5';
+$menu-5-x: 0px;
+$menu-5-y: 172px;
+$menu-5-offset-x: 0px;
+$menu-5-offset-y: -172px;
+$menu-5-width: 186px;
+$menu-5-height: 76px;
+$menu-5-total-width: 382px;
+$menu-5-total-height: 372px;
+$menu-5-image: './img/sprite_menu_pop_m.png';
+$menu-5: (0px, 172px, 0px, -172px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-5', );
+$menu-6-name: 'menu-6';
+$menu-6-x: 196px;
+$menu-6-y: 172px;
+$menu-6-offset-x: -196px;
+$menu-6-offset-y: -172px;
+$menu-6-width: 186px;
+$menu-6-height: 76px;
+$menu-6-total-width: 382px;
+$menu-6-total-height: 372px;
+$menu-6-image: './img/sprite_menu_pop_m.png';
+$menu-6: (196px, 172px, -196px, -172px, 186px, 76px, 382px, 372px, './img/sprite_menu_pop_m.png', 'menu-6', );
+$spritesheet-width: 382px;
+$spritesheet-height: 372px;
+$spritesheet-image: './img/sprite_menu_pop_m.png';
+$spritesheet-sprites: ($btn-close, $menu-1, $menu-2, $menu-3, $menu-4, $menu-5, $menu-6, );
+$spritesheet: (382px, 372px, './img/sprite_menu_pop_m.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

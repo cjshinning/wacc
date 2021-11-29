@@ -5,8 +5,8 @@
         </div>
         <div class="qr-tip">扫一扫 下载游戏</div>
         <div class="download-btns">
-            <a href="javascript:;" class="btn-android" @click="showWaiting(download.androidLink)">安卓下载</a>
-            <a href="javascript:;" class="btn-ios" @click="showWaiting(download.appLink)">ios下载</a>
+            <a href="javascript:;" class="btn-android" @click="showWaiting(download.androidLink, true)">安卓下载</a>
+            <a href="javascript:;" class="btn-ios" @click="showWaiting(download.appLink, true)">ios下载</a>
         </div>
     </div>
 </template>
