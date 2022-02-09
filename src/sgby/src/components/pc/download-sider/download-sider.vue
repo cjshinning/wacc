@@ -1,19 +1,19 @@
 <template>
     <div class="download-sider">
         <div class="qr-code">
-            <img v-lazy="download.qrcode" width="100%" alt="">
+            <img v-lazy="config.qrcode" width="100%" alt="">
         </div>
         <div class="qr-tip">扫一扫 下载游戏</div>
         <div class="download-btns">
-            <a href="javascript:;" class="btn-android" @click="showWaiting(download.androidLink, true)">安卓下载</a>
-            <a href="javascript:;" class="btn-ios" @click="showWaiting(download.appLink, true)">ios下载</a>
+            <a href="javascript:;" class="btn-android" @click="showWaiting(config.androidLink, true)">安卓下载</a>
+            <a href="javascript:;" class="btn-ios" @click="showWaiting(config.appLink, true)">ios下载</a>
         </div>
     </div>
 </template>
 <script>
 import mixin from '../../../assets/pc/js/mixin.js';
 export default {
-    props: ['download'],
+    props: ['config'],
     mixins: [mixin],
     data(){
         return{

@@ -4,13 +4,13 @@
             <div class="c-kv"></div>
             <top-nav-normal></top-nav-normal>
             <div class="c-wrap">
-                <download-sider :download="downloadConfig"></download-sider>
+                <download-sider :config="downloadConfig"></download-sider>
                 <div class="c-main">
                     <div class="article-hd">
                         <h3>{{cateMap[cate]}}</h3>
                         <p>
                             您的位置：
-                            <a href="./index.html" target="_blank">赛尔特大陆</a> >
+                            <a href="./index.html" target="_blank">霸业</a> >
                             <a :href="listLink" target="_blank">{{cateMap[cate]}}</a> >
                             <span>{{content.TITLE}}</span>
                         </p>
@@ -82,18 +82,18 @@ export default {
                                     console.log('pc_qrcode_download未填写内容');
                                 }
                                 break;
-                            case 'download_and_link':
+                            case 'pc_download_and_link':
                                 if(Object.prototype.toString.call(data) === '[object Object]'){
                                     this.downloadConfig.androidLink = data.text[0];
                                 }else{
-                                    console.log('download_and_link未填写内容');
+                                    console.log('pc_download_and_link未填写内容');
                                 }
                                 break;
-                            case 'download_app_link':
+                            case 'pc_download_app_link':
                                 if(Object.prototype.toString.call(data) === '[object Object]'){
                                     this.downloadConfig.appLink = data.text[0];
                                 }else{
-                                    console.log('download_app_link未填写内容');
+                                    console.log('pc_download_app_link未填写内容');
                                 }
                                 break;
                         }
@@ -123,7 +123,7 @@ export default {
         const id = util.getParams().id;
         
         this.getArticleContent(id);
-        this.getContent('pc_qrcode_download,download_and_link,download_app_link');
+        this.getContent('pc_qrcode_download,pc_download_and_link,pc_download_app_link');
     }
 }
 </script>

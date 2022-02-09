@@ -226,6 +226,9 @@
                     line-height: 34px;
                     font-size: 14px;
                     color: #dbae79;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
 
                     a {
                         color: #dbae79;
@@ -366,7 +369,8 @@
             overflow: hidden;
 
             .pan {
-                width: 612px;
+                // width: 612px;
+                width: 630px;
                 height: 375px;
                 overflow-x: hidden;
                 overflow-y: auto;
@@ -382,9 +386,20 @@
                     margin: 0 9px 4px 0;
 
                     .pic {
+                        position: relative;
                         width: 115px;
                         height: 93px;
                         cursor: pointer;
+                    }
+
+                    .mask{
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 115px;
+                        height: 93px;
+                        @include sprite($cur);
                     }
 
                     .txt {
@@ -393,6 +408,12 @@
                         text-align: center;
                         font-size: 14px;
                         color: #dbae79;
+                    }
+
+                    &.cur{
+                        .mask{
+                            @include sprite($cur-h);
+                        }
                     }
                 }
             }

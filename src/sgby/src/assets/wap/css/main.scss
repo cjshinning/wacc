@@ -194,6 +194,9 @@ html, body{
                     line-height: 56px;
                     font-size: 24px;
                     color: #dbae79;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                     a{
                         color: #dbae79;
                         i{
@@ -313,8 +316,8 @@ html, body{
             .pan{
                 width: 704px;
                 height: 720px;
-                // overflow-x: hidden;
-                // overflow-y: scroll;
+                overflow-x: hidden;
+                overflow-y: scroll;
                 ul{
                     display: flex;
                     flex-flow: wrap;
@@ -324,8 +327,18 @@ html, body{
                     width: 165px;
                     margin: 10px 15px 0 0;
                     .pic{
+                        position: relative;
                         width: 165px;
                         height: 134px;
+                    }
+                    .mask{
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 165px;
+                        height: 134px;
+                        @include sprite($cur);
                     }
                     .txt{
                         height: 36px;
@@ -333,6 +346,11 @@ html, body{
                         text-align: center;
                         font-size: 26px;
                         color: #dbae79;
+                    }
+                    &.cur{
+                        .mask{
+                            @include sprite($cur-h);
+                        }
                     }
                 }
             }

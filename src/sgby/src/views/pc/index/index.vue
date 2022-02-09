@@ -32,12 +32,12 @@
                             <li>
                                 <dl class="txt">
                                     <dt>技能搭配</dt>
-                                    <dd v-for="(item,index) in raidersList1.links" v-if="index < 7">
+                                    <dd v-for="(item,index) in raidersList1.links" v-if="index < 8">
                                         <a :href="item" target="_blank">{{raidersList1.text[index]}}</a>
                                     </dd>
-                                    <dd v-if="raidersList1.links.length >= 7">
+                                    <!-- <dd v-if="raidersList1.links.length >= 7">
                                         <a href="#" target="_blank">更多<i></i></a>
-                                    </dd>
+                                    </dd> -->
                                 </dl>
                             </li>
                             <li>
@@ -49,12 +49,12 @@
                             <li>
                                 <dl class="txt">
                                     <dt>萌新科普</dt>
-                                    <dd v-for="(item,index) in raidersList2.links" v-if="index < 7">
+                                    <dd v-for="(item,index) in raidersList2.links" v-if="index < 8">
                                         <a :href="item" target="_blank">{{raidersList2.text[index]}}</a>
                                     </dd>
-                                    <dd v-if="raidersList2.links.length >= 7">
+                                    <!-- <dd v-if="raidersList2.links.length >= 7">
                                         <a href="#" target="_blank">更多<i></i></a>
-                                    </dd>
+                                    </dd> -->
                                 </dl>
                             </li>
                             <li>
@@ -66,12 +66,12 @@
                             <li>
                                 <dl class="txt">
                                     <dt>更多攻略</dt>
-                                    <dd v-for="(item,index) in raidersList3.links" v-if="index < 7">
+                                    <dd v-for="(item,index) in raidersList3.links" v-if="index < 8">
                                         <a :href="item" target="_blank">{{raidersList3.text[index]}}</a>
                                     </dd>
-                                    <dd v-if="raidersList3.links.length >= 7">
+                                    <!-- <dd v-if="raidersList3.links.length >= 7">
                                         <a href="#" target="_blank">更多<i></i></a>
-                                    </dd>
+                                    </dd> -->
                                 </dl>
                             </li>
                         </ul>
@@ -95,40 +95,44 @@
                         <div class="role-pannel">
                             <div class="pannel" v-show="roleCur==0">
                                 <div class="military-tab">
-                                    <a href="javascript:;" :class="{active: militaryCur==index}" v-for="(item,index) in militaryTab" :key="index" @click="militaryCur=index">{{item}}</a>
+                                    <a href="javascript:;" :class="{active: militaryCur==index}" v-for="(item,index) in militaryTab" :key="index" @click="militaryTabSwitch(index)">{{item}}</a>
                                 </div>
-                                <div class="military-pan" @mouseover="handleScroll(true)" @mouseout="handleScroll(false)">
+                                <div class="military-pan">
                                     <div class="pan" v-bind:class="{ scroll: ifScroll }" v-for="(item,index) in militaryTab" :key="index" v-show="militaryCur==index">
                                         <ul v-if="index==0">
-                                            <li v-for="(item,index) in militaryWeiConfig.thumbnails">
-                                                <div class="pic" @click="showRole(militaryWeiConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in militaryWeiConfig.thumbnails" :class="{cur: rCur0==idx}">
+                                                <div class="pic" @click="showRole(militaryWeiConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{militaryWeiConfig.text[index]}}</p>
+                                                <p class="txt">{{militaryWeiConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==1">
-                                            <li v-for="(item,index) in militaryShuConfig.thumbnails">
-                                                <div class="pic" @click="showRole(militaryShuConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in militaryShuConfig.thumbnails" :class="{cur: rCur1==idx}">
+                                                <div class="pic" @click="showRole(militaryShuConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{militaryShuConfig.text[index]}}</p>
+                                                <p class="txt">{{militaryShuConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==2">
-                                            <li v-for="(item,index) in militaryWuConfig.thumbnails">
-                                                <div class="pic" @click="showRole(militaryWuConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in militaryWuConfig.thumbnails" :class="{cur: rCur2==idx}">
+                                                <div class="pic" @click="showRole(militaryWuConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{militaryWuConfig.text[index]}}</p>
+                                                <p class="txt">{{militaryWuConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==3">
-                                            <li v-for="(item,index) in militaryQunConfig.thumbnails">
-                                                <div class="pic" @click="showRole(militaryQunConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in militaryQunConfig.thumbnails" :class="{cur: rCur3==idx}">
+                                                <div class="pic" @click="showRole(militaryQunConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{militaryQunConfig.text[index]}}</p>
+                                                <p class="txt">{{militaryQunConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -136,56 +140,62 @@
                             </div>
                             <div class="pannel" v-show="roleCur==1">
                                 <div class="military-tab">
-                                    <a href="javascript:;" :class="{active: skillCur==index}" v-for="(item,index) in skillTab" :key="index" @click="skillCur=index">{{item}}</a>
+                                    <a href="javascript:;" :class="{active: skillCur==index}" v-for="(item,index) in skillTab" :key="index" @click="skillTabSwitch(index)">{{item}}</a>
                                 </div>
                                 <div class="military-pan">
                                     <div class="pan" v-for="(item,index) in skillTab" :key="index" v-show="skillCur==index">
                                         <ul v-if="index==0">
-                                            <li v-for="(item,index) in skillYingxiongConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillYingxiongConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillYingxiongConfig.thumbnails" :class="{cur: sCur0==idx}">
+                                                <div class="pic" @click="showSkill(skillYingxiongConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillYingxiongConfig.text[index]}}</p>
+                                                <p class="txt">{{skillYingxiongConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==1">
-                                            <li v-for="(item,index) in skillBubingConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillBubingConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillBubingConfig.thumbnails" :class="{cur: sCur1==idx}">
+                                                <div class="pic" @click="showSkill(skillBubingConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillBubingConfig.text[index]}}</p>
+                                                <p class="txt">{{skillBubingConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==2">
-                                            <li v-for="(item,index) in skillShushiConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillShushiConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillShushiConfig.thumbnails" :class="{cur: sCur2==idx}">
+                                                <div class="pic" @click="showSkill(skillShushiConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillShushiConfig.text[index]}}</p>
+                                                <p class="txt">{{skillShushiConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==3">
-                                            <li v-for="(item,index) in skillQibingConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillQibingConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillQibingConfig.thumbnails" :class="{cur: sCur3==idx}">
+                                                <div class="pic" @click="showSkill(skillQibingConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillQibingConfig.text[index]}}</p>
+                                                <p class="txt">{{skillQibingConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==4">
-                                            <li v-for="(item,index) in skillGongbingConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillGongbingConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillGongbingConfig.thumbnails" :class="{cur: sCur4==idx}">
+                                                <div class="pic" @click="showSkill(skillGongbingConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillGongbingConfig.text[index]}}</p>
+                                                <p class="txt">{{skillGongbingConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                         <ul v-if="index==5">
-                                            <li v-for="(item,index) in skillFuzhuConfig.thumbnails">
-                                                <div class="pic" @click="showSkill(skillFuzhuConfig.imgs[index])">
-                                                    <img v-lazy="item" width="100%" alt="">
+                                            <li v-for="(it,idx) in skillFuzhuConfig.thumbnails" :class="{cur: sCur5==idx}">
+                                                <div class="pic" @click="showSkill(skillFuzhuConfig.imgs[idx],index,idx)">
+                                                    <img v-lazy="it" width="100%" alt="">
+                                                    <span class="mask"></span>
                                                 </div>
-                                                <p class="txt">{{skillFuzhuConfig.text[index]}}</p>
+                                                <p class="txt">{{skillFuzhuConfig.text[idx]}}</p>
                                             </li>
                                         </ul>
                                     </div>
@@ -237,11 +247,8 @@ import CommonFooter from '../../../components/pc/common-footer/common-footer';
 import KvSwiper from '../../../components/pc/kv-swiper/kv-swiper';
 import NewsSwiper from '../../../components/pc/news-swiper/news-swiper';
 import NewsPic from '../../../components/pc/news-pic/news-pic';
-// import RoleTab from '../../../components/pc/role-tab/role-tab';
-// import FunnySwiper from '../../../components/pc/funny-swiper/funny-swiper';
 import FeatureSwiper from '../../../components/pc/feature-swiper/feature-swiper';
 import VideoSwiper from '../../../components/pc/video-swiper/video-swiper';
-// import QrCodes from '../../../components/pc/qr-codes/qr-codes';
 export default {
     data(){
         return{
@@ -249,6 +256,7 @@ export default {
                 licenseKey: '',
                 menu: '#menu',
                 anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+                normalScrollElements: '.rule-box, .pan',
                 onLeave: (origin, destination, direction) => {
                     if(origin.anchor !== destination.anchor && destination.anchor === 'page1'){
                         // 重启视频
@@ -309,16 +317,6 @@ export default {
                 links: [],
                 text: []
             },
-            roleConfig: {
-                current: 0,
-                tabs: ['战士', '法师', '祭师', '小丑'],
-                pannels: [
-                    role1,
-                    role2,
-                    role3,
-                    role4
-                ]
-            },
             funnyConfig: {
                 imgs: [],
                 text: [],
@@ -329,6 +327,10 @@ export default {
                 '武将库',
                 '技能库'
             ],
+            rCur0: 0,
+            rCur1: 0,
+            rCur2: 0,
+            rCur3: 0,
             militaryCur: 0,
             militaryTab: [
                 '魏国',
@@ -365,6 +367,12 @@ export default {
                 '弓兵',
                 '辅助'
             ],
+            sCur0: 0,
+            sCur1: 0,
+            sCur2: 0,
+            sCur3: 0,
+            sCur4: 0,
+            sCur5: 0,
             skillYingxiongConfig: {
                 imgs: [],
                 text: [],
@@ -441,6 +449,27 @@ export default {
                     for(let key in res.data){
                         let data = res.data[key];
                         switch(key){
+                            case 'titile':
+                                if(Object.prototype.toString.call(data) === '[object Object]'){
+                                    document.title = data.text[0];
+                                }else{
+                                    console.log('titile未填写内容');
+                                }
+                                break;
+                            case 'description':
+                                if(Object.prototype.toString.call(data) === '[object Object]'){
+                                    document.querySelector('meta[name="description"]').setAttribute('content', data.text[0]);
+                                }else{
+                                    console.log('description未填写内容');
+                                }
+                                break;
+                            case 'keywords':
+                                if(Object.prototype.toString.call(data) === '[object Object]'){
+                                    document.querySelector('meta[name="keywords"]').setAttribute('content', data.text[0]);
+                                }else{
+                                    console.log('keywords未填写内容');
+                                }
+                                break;
                             case 'top_img':
                                 if(Object.prototype.toString.call(data) === '[object Object]'){
                                     this.topImg.img = data.imgs[0];
@@ -724,21 +753,98 @@ export default {
                 content
             });
         },
-        showRole(roleImg){
+        militaryTabSwitch(index){
+            // console.log(index);
+            this.militaryCur = index;
+            switch(index){
+                case 0:
+                    this.rCur0 = 0;
+                    this.roleImg = this.militaryWeiConfig.imgs[0];
+                    break;
+                case 1:
+                    this.rCur1 = 0;
+                    this.roleImg = this.militaryShuConfig.imgs[0];
+                    break;
+                case 2:
+                    this.rCur2 = 0;
+                    this.roleImg = this.militaryWuConfig.imgs[0];
+                    break;
+                case 3:
+                    this.rCur3 = 0;
+                    this.roleImg = this.militaryQunConfig.imgs[0];
+                    break;
+            }
+        },
+        showRole(roleImg, index, idx){
+            // console.log(index, idx);
             this.roleImg = roleImg;
+            switch(index){
+                case 0:
+                    this.rCur0 = idx;
+                    break;
+                case 1:
+                    this.rCur1 = idx;
+                    break;
+                case 2:
+                    this.rCur2 = idx;
+                    break;
+                case 3:
+                    this.rCur3 = idx;
+                    break;
+            }
         },
-        showSkill(skillImg){
+        skillTabSwitch(index){
+            this.skillCur = index;
+            switch(index){
+                case 0:
+                    this.sCur0 = 0;
+                    this.skillImg = this.skillYingxiongConfig.imgs[0];
+                    break;
+                case 1:
+                    this.sCur1 = 0;
+                    this.skillImg = this.skillBubingConfig.imgs[0];
+                    break;
+                case 2:
+                    this.sCur2 = 0;
+                    this.skillImg = this.skillShushiConfig.imgs[0];
+                    break;
+                case 3:
+                    this.sCur3 = 0;
+                    this.skillImg = this.skillQibingConfig.imgs[0];
+                    break;
+                case 4:
+                    this.sCur4 = 0;
+                    this.skillImg = this.skillGongbingConfig.imgs[0];
+                    break;
+                case 5:
+                    this.sCur5 = 0;
+                    this.skillImg = this.skillFuzhuConfig.imgs[0];
+                    break;
+            }
+        },
+        showSkill(skillImg, index, idx){
+            // console.log(index, idx);
             this.skillImg = skillImg;
-        },
-        handleScroll(flag){
-            // if(flag){
-            //     fullpage_api && fullpage_api.setAllowScrolling(false);
-            //     this.ifScroll = true;
-            // }else{
-            //     fullpage_api && fullpage_api.setAllowScrolling(true);
-            //     this.ifScroll = false;
-            // }
-            
+            switch(index){
+                case 0:
+                    this.sCur0 = idx;
+                    break;
+                case 1:
+                    this.sCur1 = idx;
+                    break;
+                case 2:
+                    this.sCur2 = idx;
+                    break;
+                case 3:
+                    this.sCur3 = idx;
+                    break;
+                case 4:
+                    this.sCur4 = idx;
+                    break;
+                case 5:
+                    this.sCur5 = idx;
+                    break;
+            }
         }
     },
     components: {
@@ -748,23 +854,15 @@ export default {
         KvSwiper,
         NewsSwiper,
         NewsPic,
-        // RoleTab,
-        // FunnySwiper,
         FeatureSwiper,
         VideoSwiper,
-        // QrCodes
     },
     mounted(){
         this.getIndexNews(0,6);
         this.getIndexNews(1,6);
         this.getIndexNews(2,6);
         this.getIndexNews(4,6);
-        this.getContent('top_img,pc_top_video,pc_qrcode_download,pc_qrcode_official,pc_douyin_qr,pc_kuaishou_qr,pc_weibo_qr,pc_download_and_link,pc_download_app_link,pc_desk_download,index_focus,pc_news_pic,pc_raiders_pic,pc_raiders_list_1,pc_raiders_list_2,pc_raiders_list_3,pc_wujiang_wei,pc_wujiang_shu,pc_wujiang_wu,pc_wujiang_qun,pc_jineng_yingxiong,pc_jineng_bubing,pc_jineng_shushi,pc_jineng_qibing,pc_jineng_gongbing,pc_jineng_fuzhu,pc_feature_pic,pc_feature_video,reserve_link,gamesite_fcm_content_tips,gamesite_fcm_tips');
-
-        document.querySelector('.pan').addEventListener('DOMMouseScroll', function(e){
-            e.stopPropagation();
-            fullpage_api && fullpage_api.setAllowScrolling(false);
-        })
+        this.getContent('top_img,pc_top_video,pc_qrcode_download,pc_qrcode_official,pc_douyin_qr,pc_kuaishou_qr,pc_weibo_qr,pc_download_and_link,pc_download_app_link,pc_desk_download,index_focus,pc_news_pic,pc_raiders_pic,pc_raiders_list_1,pc_raiders_list_2,pc_raiders_list_3,pc_wujiang_wei,pc_wujiang_shu,pc_wujiang_wu,pc_wujiang_qun,pc_jineng_yingxiong,pc_jineng_bubing,pc_jineng_shushi,pc_jineng_qibing,pc_jineng_gongbing,pc_jineng_fuzhu,pc_feature_pic,pc_feature_video,gamesite_fcm_content_tips,gamesite_fcm_tips,titile,description,keywords');
     }
 }
 </script>
